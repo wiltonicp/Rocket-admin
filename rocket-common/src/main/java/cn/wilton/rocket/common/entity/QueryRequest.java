@@ -1,8 +1,11 @@
 package cn.wilton.rocket.common.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 /**
@@ -20,17 +23,23 @@ public class QueryRequest implements Serializable {
     /**
      * 当前页面数据量
      */
+    @ApiModelProperty(value = "每页条数", required = true, example = "10")
+    @Min(value = 1, message = "每页条数不得小于1")
+    @Max(value = 100, message = "每页条数不得大于100")
     private int pageSize = 10;
     /**
      * 当前页码
      */
+    @ApiModelProperty(value = "起始页，从1开始", required = true, example = "1")
+    @Min(value = 1, message = "页数不得小于1")
     private int pageNum = 1;
     /**
      * 排序字段
      */
-    private String field;
+    @ApiModelProperty(value = "排序字段", required = true, example = "created_time")
+    private String field = "created_time";
     /**
      * 排序规则，asc升序，desc降序
      */
-    private String order;
+    private String order = "DESC";
 }

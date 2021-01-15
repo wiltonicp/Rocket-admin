@@ -13,7 +13,7 @@
         <module>rocket-common</module>
         <module>rocket-mbg</module>
         <module>rocket-mbg</module>
-        <module>rocket-admin</module>
+        <module>rocket-app</module>
         <module>rocket-security</module>
         <module>rocket-security</module>
     </modules>
