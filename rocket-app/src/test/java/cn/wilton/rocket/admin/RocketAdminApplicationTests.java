@@ -1,4 +1,4 @@
-package cn.wilton.rocket.rocket.admin;
+package cn.wilton.rocket.admin;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

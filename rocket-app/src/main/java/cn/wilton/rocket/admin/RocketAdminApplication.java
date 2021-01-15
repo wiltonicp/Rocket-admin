@@ -1,4 +1,4 @@
-package cn.wilton.rocket.rocket.admin;
+package cn.wilton.rocket.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

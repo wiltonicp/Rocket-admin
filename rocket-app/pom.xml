@@ -7,9 +7,9 @@
         <groupId>cn.wilton.rocket</groupId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>rocket-admin</artifactId>
+    <artifactId>rocket-app</artifactId>
     <version>1.0.0</version>
-    <name>rocket-admin</name>
+    <name>rocket-app</name>
     <description>rocket 项目主模块</description>
 
     <properties>
