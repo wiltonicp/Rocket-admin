@@ -40,6 +40,9 @@
         <spring-data-commons.version>2.3.0.RELEASE</spring-data-commons.version>
         <jjwt.version>0.9.0</jjwt.version>
         <aliyun-oss.version>2.5.0</aliyun-oss.version>
+        <mybatis-plus.version>3.2.0</mybatis-plus.version>
+        <fastjson.version>1.2.62</fastjson.version>
+        <dynamic-datasource>2.5.7</dynamic-datasource>
         <logstash-logback.version>5.3</logstash-logback.version>
         <rocket-common.version>1.0.0</rocket-common.version>
         <rocket-mbg.version>1.0.0</rocket-mbg.version>
