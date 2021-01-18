@@ -12,9 +12,7 @@
     <modules>
         <module>rocket-common</module>
         <module>rocket-mbg</module>
-        <module>rocket-mbg</module>
         <module>rocket-app</module>
-        <module>rocket-security</module>
         <module>rocket-security</module>
     </modules>
 
@@ -32,18 +30,18 @@
         <skipTests>true</skipTests>
         <docker.host>http://127.0.0.1:2375</docker.host>
         <docker.maven.plugin.version>1.2.2</docker.maven.plugin.version>
+        <mysql-connector.version>8.0.11</mysql-connector.version>
         <hutool.version>5.4.0</hutool.version>
         <swagger2.version>2.9.2</swagger2.version>
         <swagger-models.version>1.6.0</swagger-models.version>
         <swagger-annotations.version>1.6.0</swagger-annotations.version>
-        <mysql-connector.version>8.0.20</mysql-connector.version>
         <spring-data-commons.version>2.3.0.RELEASE</spring-data-commons.version>
         <jjwt.version>0.9.0</jjwt.version>
         <aliyun-oss.version>2.5.0</aliyun-oss.version>
-        <mybatis-plus.version>3.2.0</mybatis-plus.version>
+        <mybatis-plus.version>3.4.0</mybatis-plus.version>
         <fastjson.version>1.2.62</fastjson.version>
-        <dynamic-datasource>2.5.7</dynamic-datasource>
-        <logstash-logback.version>5.3</logstash-logback.version>
+        <dynamic-datasource>2.5.5</dynamic-datasource>
+        <logstash-logback.version>6.1</logstash-logback.version>
         <rocket-common.version>1.0.0</rocket-common.version>
         <rocket-mbg.version>1.0.0</rocket-mbg.version>
         <rocket-security.version>1.0.0</rocket-security.version>
@@ -130,7 +128,7 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector.version}</version>
+                <scope>runtime</scope>
             </dependency>
             <!--SpringData工具包-->
             <dependency>
@@ -158,6 +156,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>aliyun-repos</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <build>
         <pluginManagement>
