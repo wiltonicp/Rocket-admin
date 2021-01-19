@@ -22,8 +22,8 @@ import java.util.Set;
 
 /**
 * 全局统用异常处理器
-* 所谓的全局异常处理指的是全局处理Controller层抛出来的异常。因为全局异常处理器在各个微服务系统里都能用到
-* 对于通用的异常类型捕获可以在BaseExceptionHandler中定义，而当前微服务系统独有的异常类型捕获可以在GlobalExceptionHandler中定义
+* 所谓的全局异常处理指的是全局处理Controller层抛出来的异常。因为全局异常处理器在各个服务系统里都能用到
+* 对于通用的异常类型捕获可以在BaseExceptionHandler中定义
 * @Description
 * @Author: Ranger
 * @Date: 2021/1/15 13:57
@@ -36,7 +36,7 @@ public class BaseExceptionHandler {
      * 统一处理请求参数校验(实体对象传参)
      *
      * @param e BindException
-     * @return FebsResponse
+     * @return RocketResult
      */
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -54,7 +54,7 @@ public class BaseExceptionHandler {
      * 统一处理请求参数校验(普通传参)
      *
      * @param e ConstraintViolationException
-     * @return FebsResponse
+     * @return RocketResult
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

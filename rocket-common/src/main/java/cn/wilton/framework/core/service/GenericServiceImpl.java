@@ -29,7 +29,7 @@ import java.util.List;
  * @Date: 2021/1/15 15:40
  * @Email: wilton.icp@gmail.com
  */
-public abstract class GenericServiceImpl<V,T> implements GenericService<V,T>{
+public abstract class GenericServiceImpl<V,T> implements IGenericService<V,T>{
 
     @Autowired
     private GenericMapper<T> genericMapper;

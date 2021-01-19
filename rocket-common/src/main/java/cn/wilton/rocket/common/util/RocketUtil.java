@@ -2,13 +2,20 @@ package cn.wilton.rocket.common.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.core.env.Environment;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 /**
  * @Description
@@ -16,7 +23,33 @@ import java.util.regex.Pattern;
  * @Date: 2021/1/15 11:14
  * @Email: wilton.icp@gmail.com
  */
+@Slf4j
 public class RocketUtil {
+
+    /**
+     * 驼峰转下划线
+     *
+     * @param value 待转换值
+     * @return 结果
+     */
+    public static String camelToUnderscore(String value) {
+        if (StringUtils.isBlank(value)) {
+            return value;
+        }
+        String[] arr = StringUtils.splitByCharacterTypeCamelCase(value);
+        if (arr.length == 0) {
+            return value;
+        }
+        StringBuilder result = new StringBuilder();
+        IntStream.range(0, arr.length).forEach(i -> {
+            if (i != arr.length - 1) {
+                result.append(arr[i]).append("_");
+            } else {
+                result.append(arr[i]);
+            }
+        });
+        return StringUtils.lowerCase(result.toString());
+    }
 
     /**
      * 设置响应
@@ -58,5 +91,18 @@ public class RocketUtil {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();
+    }
+
+    public static void printStartUpBanner(Environment environment) throws UnknownHostException {
+        log.info("\n----------------------------------------------------------\n\t" +
+                        "Application '{}' is running! Access URLs:\n\t" +
+                        "Login: \thttp://{}:{}/login\n\t" +
+                        "Doc: \thttp://{}:{}/doc.html\n" +
+                        "----------------------------------------------------------",
+                environment.getProperty("spring.application.name"),
+                InetAddress.getLocalHost().getHostAddress(),
+                environment.getProperty("server.port"),
+                InetAddress.getLocalHost().getHostAddress(),
+                environment.getProperty("server.port"));
     }
 }

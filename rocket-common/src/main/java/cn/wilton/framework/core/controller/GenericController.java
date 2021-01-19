@@ -1,7 +1,7 @@
 package cn.wilton.framework.core.controller;
 
 import cn.wilton.framework.core.entity.PageInfo;
-import cn.wilton.framework.core.service.GenericService;
+import cn.wilton.framework.core.service.IGenericService;
 import cn.wilton.rocket.common.api.RocketResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ import java.util.List;
  */
 public abstract class GenericController<V,T> {
 
-    @Autowired
-    private GenericService<V,T> genericService;
+    @Autowired(required = false)
+    private IGenericService<V,T> genericService;
 
     @GetMapping(value = {"/"})
     public String execute(HttpServletRequest request,

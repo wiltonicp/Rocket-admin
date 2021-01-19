@@ -14,7 +14,7 @@ import java.util.List;
  * @Date: 2021/1/15 15:05
  * @Email: wilton.icp@gmail.com
  */
-public interface GenericService<V,T> {
+public interface IGenericService<V,T> {
 
     /**
      * page接口 分页、排序

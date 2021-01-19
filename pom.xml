@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.wilton.rocket</groupId>
-    <artifactId>rocket</artifactId>
+    <artifactId>rocket-admin</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.3.RELEASE</version>
+        <version>2.3.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -40,7 +40,7 @@
         <aliyun-oss.version>2.5.0</aliyun-oss.version>
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
         <fastjson.version>1.2.62</fastjson.version>
-        <dynamic-datasource>2.5.5</dynamic-datasource>
+        <dynamic-datasource.version>2.5.4</dynamic-datasource.version>
         <logstash-logback.version>6.1</logstash-logback.version>
         <rocket-common.version>1.0.0</rocket-common.version>
         <rocket-mbg.version>1.0.0</rocket-mbg.version>
@@ -124,12 +124,6 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger-annotations.version}</version>
             </dependency>
-            <!--Mysql数据库驱动-->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <scope>runtime</scope>
-            </dependency>
             <!--SpringData工具包-->
             <dependency>
                 <groupId>org.springframework.data</groupId>
@@ -179,7 +173,7 @@
                     <artifactId>docker-maven-plugin</artifactId>
                     <version>${docker.maven.plugin.version}</version>
                     <configuration>
-                        <imageName>rocket/${project.artifactId}:${project.version}</imageName>
+                        <imageName>rocket-admin/${project.artifactId}:${project.version}</imageName>
                         <dockerHost>${docker.host}</dockerHost>
                         <baseImage>java:8</baseImage>
                         <entryPoint>["java", "-jar", "-Dspring.profiles.active=prod","/${project.build.finalName}.jar"]

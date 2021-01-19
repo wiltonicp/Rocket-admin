@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
-* 基于 java8 的时间恐惧类
+* 基于 java8 的时间工具类
 * @Description
 * @Author: Ranger
 * @Date: 2021/1/15 13:55
