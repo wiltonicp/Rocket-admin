@@ -1,5 +1,7 @@
 package cn.wilton.rocket.common.api;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -10,18 +12,22 @@ import lombok.Data;
  * @Email: wilton.icp@gmail.com
  */
 @Data
+@ApiModel(value = "RocketResult")
 public class RocketResult<T> {
     /**
      * 状态码
      */
+    @ApiModelProperty(value = "状态码")
     private long code;
     /**
      * 提示信息
      */
+    @ApiModelProperty(value = "提示信息")
     private String message;
     /**
      * 数据封装
      */
+    @ApiModelProperty(value = "数据封装")
     private T data;
 
     protected RocketResult() {

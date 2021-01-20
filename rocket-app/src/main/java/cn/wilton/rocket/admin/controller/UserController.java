@@ -4,6 +4,7 @@ import cn.wilton.framework.core.controller.GenericController;
 import cn.wilton.rocket.admin.service.IUserService;
 import cn.wilton.rocket.common.api.RocketResult;
 import cn.wilton.rocket.common.entity.system.SystemUser;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Email: wilton.icp@gmail.com
  */
 @RestController
+@Api(tags = "用户测试接口")
 @RequestMapping("system")
 @RequiredArgsConstructor
 public class UserController extends GenericController<SystemUser,SystemUser> {
