@@ -16,14 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @Email: wilton.icp@gmail.com
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("system")
 @RequiredArgsConstructor
 public class UserController extends GenericController<SystemUser,SystemUser> {
 
     private final IUserService userService;
 
-    @GetMapping("get111")
-    public RocketResult<SystemUser> list(){
-        return userService.get("1");
-    }
 }

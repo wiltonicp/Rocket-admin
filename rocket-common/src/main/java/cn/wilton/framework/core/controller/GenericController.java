@@ -3,16 +3,16 @@ package cn.wilton.framework.core.controller;
 import cn.wilton.framework.core.entity.PageInfo;
 import cn.wilton.framework.core.service.IGenericService;
 import cn.wilton.rocket.common.api.RocketResult;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
 /**
  * 通用controller
- * @Description
+ * @param <V> vo类
+ * @param <T> entity实体
  * @Author: Ranger
  * @Date: 2021/1/15 15:19
  * @Email: wilton.icp@gmail.com
@@ -22,23 +22,12 @@ public abstract class GenericController<V,T> {
     @Autowired(required = false)
     private IGenericService<V,T> genericService;
 
-    @GetMapping(value = {"/"})
-    public String execute(HttpServletRequest request,
-                          @RequestParam String method,
-                          @RequestParam(required = false)
-                          String id, @RequestParam(required = false) String moduleId) {
+    @RequestMapping(value = {"/{method}"},method = RequestMethod.GET)
+    public ModelAndView execute(HttpServletRequest request,
+                                @PathVariable("method") String method, ModelAndView mv) {
         String controllerMapping = ((RequestMapping)this.getClass().getAnnotation(RequestMapping.class)).value()[0];
-        //String csrfToken = CSRFTokenManager.getTokenForSession(request.getSession());
-        if (StringUtils.isNotBlank(id)) {
-            request.setAttribute("id", id);
-        }
-
-        if (StringUtils.isNotBlank(moduleId)) {
-            request.getSession().setAttribute("moduleId", moduleId);
-        }
-
-        //request.setAttribute("CSRFToken", csrfToken);
-        return controllerMapping + "/" + method;
+        mv.setViewName("view/" + controllerMapping + "/" + method);
+        return mv;
     }
 
     @GetMapping("page")

@@ -35,7 +35,7 @@ public abstract class RocketEntity {
      * 修改者
      */
     @TableField(value = "MODIFY_BY", fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime modifyBy;
+    private Long modifyBy;
 
     /**
      * 修改时间
@@ -46,7 +46,7 @@ public abstract class RocketEntity {
     /**
      * 版本信息
      */
-    @TableField(value = "version")
+    @TableField(value = "VERSION")
     @Version
-    private long version;
+    private Long version;
 }

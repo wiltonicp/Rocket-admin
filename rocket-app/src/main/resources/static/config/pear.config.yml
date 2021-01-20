@@ -2,7 +2,7 @@
 ## 网站配置
 logo: 
   ## 网站名称
-  title: "Pear Admin"
+  title: "Rocket Admin"
   ## 网站图标
   image: "admin/images/logo.png"
 ## 菜单配置
@@ -28,7 +28,7 @@ tab:
   ## 默认选项卡数据
   index: 
     id: "10" ## 标识 ID , 建议与菜单项中的 ID 一致
-    href: "view/console/console1.html" ## 页面地址
+    href: "console" ## 页面地址
     title: "首页" ## 标题
 ## 主题配置
 theme: 
@@ -54,7 +54,7 @@ colors:
 links: 
 - icon: "layui-icon layui-icon-website"
   title: "官方网站"
-  href: "http://www.pearadmin.com"
+  href: "https://blog.wiltonic.cn"
 - icon: "layui-icon layui-icon-read"
   title: "开发文档"
   href: "http://www.pearadmin.com/doc/"
