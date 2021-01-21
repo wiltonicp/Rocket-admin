@@ -10,6 +10,7 @@
     <artifactId>rocket-app</artifactId>
     <version>1.0.0</version>
     <name>rocket-app</name>
+    <url>https://blog.wiltonic.cn</url>
     <description>rocket 项目主模块</description>
 
     <properties>
