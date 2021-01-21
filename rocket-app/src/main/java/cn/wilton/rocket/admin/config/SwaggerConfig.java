@@ -1,5 +1,7 @@
 package cn.wilton.rocket.admin.config;
 
+import cn.wilton.rocket.common.config.RocketSwaggerConfig;
+import cn.wilton.rocket.common.entity.SwaggerProperties;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -27,27 +29,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableKnife4j
 @Import(BeanValidatorPluginsConfiguration.class)
 @ConditionalOnProperty(value = {"knife4j.enable"}, matchIfMissing = true)
-public class SwaggerConfiguration {
+public class SwaggerConfig extends RocketSwaggerConfig {
 
-    @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                //分组名称
-                .groupName("1.X版本")
-                .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .paths(PathSelectors.any())
-                .build();
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
+    @Override
+    public SwaggerProperties swaggerProperties() {
+        return SwaggerProperties.builder()
                 .title("Rcoket Admin 后台服务API接口文档")
                 .description("Rcoket-Admin服务相关接口(Knife4j)")
-                .termsOfServiceUrl("http://localhost:8080/")
-                .contact(new Contact("Ranger","https://blog.wiltonic.cn","wilton.icp@gmail.com"))
+                .contactName("Ranger")
                 .version("1.0")
+                .enableSecurity(true)
                 .build();
     }
 }

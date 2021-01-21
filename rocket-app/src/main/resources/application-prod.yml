@@ -27,3 +27,6 @@ spring:
 
 knife4j:
   enable: false
+
+logstash:
+  host: localhost

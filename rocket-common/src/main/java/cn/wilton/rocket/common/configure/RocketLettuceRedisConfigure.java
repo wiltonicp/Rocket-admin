@@ -1,6 +1,5 @@
 package cn.wilton.rocket.common.configure;
 
-import cn.wilton.rocket.common.service.RedisService;
 import cn.wilton.rocket.common.service.impl.RedisServiceImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
