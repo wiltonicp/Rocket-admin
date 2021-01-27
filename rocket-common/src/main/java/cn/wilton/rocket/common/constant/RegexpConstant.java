@@ -1,4 +1,4 @@
-package cn.wilton.rocket.common.entity;
+package cn.wilton.rocket.common.constant;
 
 /**
 * 正则校验常量

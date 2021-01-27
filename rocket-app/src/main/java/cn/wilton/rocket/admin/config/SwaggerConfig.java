@@ -36,6 +36,7 @@ public class SwaggerConfig extends RocketSwaggerConfig {
         return SwaggerProperties.builder()
                 .title("Rcoket Admin 后台服务API接口文档")
                 .description("Rcoket-Admin服务相关接口(Knife4j)")
+                .groupName("1.0版本")
                 .contactName("Ranger")
                 .version("1.0")
                 .enableSecurity(true)

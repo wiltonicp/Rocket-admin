@@ -1,7 +1,7 @@
 package cn.wilton.rocket.common.validator;
 
 import cn.wilton.rocket.common.annotation.IsMobile;
-import cn.wilton.rocket.common.entity.RegexpConstant;
+import cn.wilton.rocket.common.constant.RegexpConstant;
 import cn.wilton.rocket.common.util.RocketUtil;
 import org.apache.commons.lang3.StringUtils;
 

@@ -3,9 +3,11 @@ package cn.wilton.rocket.common.entity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.Version;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -17,30 +19,34 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-public abstract class RocketEntity {
+public abstract class RocketEntity implements Serializable {
 
     /**
      * 创建者
      */
     @TableField(value = "CREATED_BY", fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "创建者", required = true, example = "1")
     private Long createdBy;
 
     /**
      * 创建时间
      */
     @TableField(value = "CREATED_TIME", fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "创建时间", required = true)
     private LocalDateTime createdTime;
 
     /**
      * 修改者
      */
     @TableField(value = "MODIFY_BY", fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty(value = "修改者", required = true, example = "1")
     private Long modifyBy;
 
     /**
      * 修改时间
      */
     @TableField(value = "MODIFY_TIME", fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty(value = "修改者", required = true)
     private LocalDateTime modifyTime;
 
     /**
@@ -48,5 +54,6 @@ public abstract class RocketEntity {
      */
     @TableField(value = "VERSION")
     @Version
+    @ApiModelProperty(value = "版本信息", required = true, example = "1.0")
     private Long version;
 }

@@ -57,7 +57,7 @@ links:
   href: "https://blog.wiltonic.cn"
 - icon: "layui-icon layui-icon-read"
   title: "开发文档"
-  href: "http://www.pearadmin.com/doc/"
+  href: "/doc.html"
 - icon: "layui-icon layui-icon-fonts-code"
   title: "开源地址"
   href: "https://gitee.com/pear-admin/Pear-Admin-Layui"

@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +28,7 @@ public abstract class GenericController<V,T> {
     private IGenericService<V,T> genericService;
 
     @RequestMapping(value = {"/{method}"},method = RequestMethod.GET)
+    @PreAuthorize("hasAnyAuthority('user:view')")
     public ModelAndView execute(HttpServletRequest request,
                                 @PathVariable("method") String method, ModelAndView mv) {
         String controllerMapping = ((RequestMapping)this.getClass().getAnnotation(RequestMapping.class)).value()[0];
@@ -61,6 +63,7 @@ public abstract class GenericController<V,T> {
     @GetMapping("save")
     @ApiOperation(value = "保存接口")
     @ApiOperationSupport(author = "Ranger")
+    @PreAuthorize("hasAnyAuthority('user:add')")
     public RocketResult<V> save(V entityVo) {
         return genericService.save(entityVo);
     }
@@ -71,6 +74,7 @@ public abstract class GenericController<V,T> {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", required = true)
     })
+    @PreAuthorize("hasAnyAuthority('user:delete')")
     public RocketResult<String> delete( @PathVariable("id") String id) {
         return genericService.delete(id);
     }

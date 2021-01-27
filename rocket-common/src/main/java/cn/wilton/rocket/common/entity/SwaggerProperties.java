@@ -31,6 +31,10 @@ public class SwaggerProperties {
      */
     private String termsOfServiceUrl = "http://localhost:8080/";
     /**
+     * 分组版本
+     */
+    private String groupName = "1.0版本";
+    /**
      * 文档版本
      */
     private String version = "1.0";

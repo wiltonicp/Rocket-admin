@@ -11,5 +11,11 @@ import org.springframework.stereotype.Repository;
  * @Email: wilton.icp@gmail.com
  */
 @Repository
-public interface UserMapeer extends GenericMapper<SystemUser> {
+public interface IUserMapeer extends GenericMapper<SystemUser> {
+    /**
+     * 通过用户名查找用户信息
+     * @param username
+     * @return
+     */
+    SystemUser findByName(String username);
 }

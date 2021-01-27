@@ -15,6 +15,24 @@
     <name>rocket-security</name>
     <description>rocket 权限管理模块 </description>
 
+    <dependencies>
+        <!--rocket通用模块-->
+        <dependency>
+            <groupId>cn.wilton.rocket</groupId>
+            <artifactId>rocket-common</artifactId>
+            <version>${rocket-common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!--JWT(Json Web Token)登录支持-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

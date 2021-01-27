@@ -12,22 +12,22 @@ import lombok.Data;
  * @Email: wilton.icp@gmail.com
  */
 @Data
-@ApiModel(value = "RocketResult")
+@ApiModel(value = "通用接口返回对象")
 public class RocketResult<T> {
     /**
      * 状态码
      */
-    @ApiModelProperty(value = "状态码")
+    @ApiModelProperty(value = "状态码",example = "200")
     private long code;
     /**
      * 提示信息
      */
-    @ApiModelProperty(value = "提示信息")
+    @ApiModelProperty(value = "提示信息",example = "操作成功")
     private String message;
     /**
      * 数据封装
      */
-    @ApiModelProperty(value = "数据封装")
+    @ApiModelProperty(value = "数据封装",example = "{\"name\":\"Ranger\"}")
     private T data;
 
     protected RocketResult() {
@@ -45,8 +45,16 @@ public class RocketResult<T> {
     }
 
     /**
+     * 成功
+     * @param <T>
+     * @return
+     */
+    public static <T> RocketResult<T> success(String message) {
+        return new RocketResult<T>(ResultCode.SUCCESS.getCode(), message);
+    }
+
+    /**
      * 成功返回结果
-     *
      * @param data 获取的数据
      */
     public static <T> RocketResult<T> success(T data) {
@@ -55,7 +63,6 @@ public class RocketResult<T> {
 
     /**
      * 成功返回结果
-     *
      * @param data 获取的数据
      * @param  message 提示信息
      */
@@ -77,7 +84,7 @@ public class RocketResult<T> {
      * @param message 错误信息
      */
     public static <T> RocketResult<T> failed(IErrorCode errorCode,String message) {
-        return new RocketResult<T>(errorCode.getCode(), message, null);
+        return new RocketResult<T>(errorCode.getCode(), message);
     }
 
     /**
@@ -85,7 +92,7 @@ public class RocketResult<T> {
      * @param message 提示信息
      */
     public static <T> RocketResult<T> failed(String message) {
-        return new RocketResult<T>(ResultCode.FAILED.getCode(), message, null);
+        return new RocketResult<T>(ResultCode.FAILED.getCode(), message);
     }
 
     /**
@@ -107,7 +114,7 @@ public class RocketResult<T> {
      * @param message 提示信息
      */
     public static <T> RocketResult<T> validateFailed(String message) {
-        return new RocketResult<T>(ResultCode.VALIDATE_FAILED.getCode(), message, null);
+        return new RocketResult<T>(ResultCode.VALIDATE_FAILED.getCode(), message);
     }
 
     /**

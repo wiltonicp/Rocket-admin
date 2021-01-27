@@ -41,5 +41,6 @@ public class QueryRequest implements Serializable {
     /**
      * 排序规则，asc升序，desc降序
      */
+    @ApiModelProperty(value = "排序规则", required = true, example = "DESC")
     private String order = "DESC";
 }
