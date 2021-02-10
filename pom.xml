@@ -18,6 +18,7 @@
 
     <name>Rocket-Admin</name>
     <url>https://blog.wiltonic.cn</url>
+    <description>Rocket Admin 是基于Spring Boot 2.3.7、Spring Security、Spring Cloud OAuth2 的通用后台权限管理系统</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
