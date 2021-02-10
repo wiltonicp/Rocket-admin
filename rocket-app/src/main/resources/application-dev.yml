@@ -9,12 +9,12 @@ spring:
       datasource:
         base:
           username: root
-          password: wilton.icp2019
+          password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://tx.wiltonic.cn:3306/rocket_base?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+          url: jdbc:mysql://127.0.0.1:3306/rocket_base?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
   redis:
     database: 0
-    host: tx.wiltonic.cn
+    host: 127.0.0.1
     port: 6379
     password:
     lettuce:
