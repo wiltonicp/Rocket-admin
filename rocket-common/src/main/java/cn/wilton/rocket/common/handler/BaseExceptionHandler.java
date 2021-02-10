@@ -32,6 +32,13 @@ import java.util.Set;
 @Slf4j
 public class BaseExceptionHandler {
 
+    @ExceptionHandler(value = RocketException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public RocketResult handleBaseException(RocketException e) {
+        log.error("Rocket Admin系统异常", e);
+        return RocketResult.failed(e.getMessage());
+    }
+
     /**
      * 统一处理请求参数校验(实体对象传参)
      *

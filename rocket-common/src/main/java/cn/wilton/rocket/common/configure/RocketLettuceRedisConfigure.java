@@ -1,5 +1,6 @@
 package cn.wilton.rocket.common.configure;
 
+import cn.wilton.rocket.common.service.RedisService;
 import cn.wilton.rocket.common.service.impl.RedisServiceImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -53,7 +54,7 @@ public class RocketLettuceRedisConfigure {
 
     @Bean
     @ConditionalOnBean(name = "redisTemplate")
-    public RedisServiceImpl redisService() {
+    public RedisService redisService() {
         return new RedisServiceImpl();
     }
 }

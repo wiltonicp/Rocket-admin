@@ -1,4 +1,4 @@
-package cn.wilton.rocket.admin.mapper;
+package cn.wilton.framework.security.manager.mapper;
 
 import cn.wilton.framework.core.mapper.GenericMapper;
 import cn.wilton.rocket.common.entity.system.SystemUser;
@@ -11,11 +11,13 @@ import org.springframework.stereotype.Repository;
  * @Email: wilton.icp@gmail.com
  */
 @Repository
-public interface IUserMapeer extends GenericMapper<SystemUser> {
+public interface IUserMapper extends GenericMapper<SystemUser> {
+
     /**
-     * 通过用户名查找用户信息
-     * @param username
-     * @return
+     * 获取用户
+     *
+     * @param username 用户名
+     * @return 用户
      */
     SystemUser findByName(String username);
 }

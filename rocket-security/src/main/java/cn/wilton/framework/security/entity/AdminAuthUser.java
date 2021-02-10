@@ -2,6 +2,8 @@ package cn.wilton.framework.security.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -14,7 +16,8 @@ import java.util.Date;
  * @Date: 2021/1/25 15:06
  * @Email: wilton.icp@gmail.com
  */
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
 public class AdminAuthUser extends User {
 

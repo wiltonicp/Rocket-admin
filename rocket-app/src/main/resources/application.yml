@@ -21,31 +21,35 @@ spring:
       max-file-size: 10MB
       max-request-size: 100MB
 
-jwt:
-  tokenHeader: Authorization #JWT存储的请求头
-  secret: rocket-admin-secret #JWT加解密使用的密钥
-  expiration: 604800 #JWT的超期限时间(60*60*24*7)
-  tokenHead: 'Bearer '  #JWT负载中拿到开头
+rocket:
+  auth:
+    jwtAccessKey: rocket-admin-secret
+    socialLoginClientId:
 
 secure:
   ignored:
     urls: #安全路径白名单
-      - /swagger-ui.html
+      - /doc.html
       - /swagger-resources/**
       - /swagger/**
       - /**/v2/api-docs
+      - /component/**
+      - /admin/css/**
+      - /admin/images/**
       - /**/*.js
       - /**/*.css
       - /**/*.png
-      - /**/*.ico
-      - /webjars/springfox-swagger-ui/**
+      - /favicon.ico
+      - /webjars/**
       - /actuator/**
       - /druid/**
-      - /admin/login
-      - /admin/register
-      - /admin/info
-      - /admin/logout
-      - /minio/upload
+      - /login
+      - /oauth/**
+      - /captcha
+      - /auth/token
+      - /auth/register
+      - /auth/info
+      - /auth/logout
 
 
 mybatis-plus:

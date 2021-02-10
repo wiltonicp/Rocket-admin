@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.wilton.rocket.admin.mapper.IUserMapeer">
+<mapper namespace="cn.wilton.framework.security.manager.mapper.IUserMapper">
     <select id="findByName" parameterType="string" resultType="cn.wilton.rocket.common.entity.system.SystemUser">
         SELECT
         u.user_id userId,

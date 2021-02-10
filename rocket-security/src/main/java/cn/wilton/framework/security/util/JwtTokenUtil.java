@@ -29,7 +29,6 @@ import java.util.Map;
  * @Date: 2021/1/25 11:26
  * @Email: wilton.icp@gmail.com
  */
-@Component
 public class JwtTokenUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
     private static final String CLAIM_KEY_USERNAME = "sub";

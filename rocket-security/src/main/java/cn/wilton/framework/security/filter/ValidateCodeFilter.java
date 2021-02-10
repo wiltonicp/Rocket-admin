@@ -23,7 +23,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
- * @Description
+ * 验证码过滤器
+ * 用于拦截请求并校验验证码的正确性
  * @Author: Ranger
  * @Date: 2021/1/25 14:44
  * @Email: wilton.icp@gmail.com
@@ -38,18 +39,15 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String header = httpServletRequest.getHeader("Authorization");
-        String clientId = getClientId(header, httpServletRequest);
 
-        RequestMatcher matcher = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.toString());
+        RequestMatcher matcher = new AntPathRequestMatcher("/login", HttpMethod.POST.toString());
         if (matcher.matches(httpServletRequest)
-                && StringUtils.equalsIgnoreCase(httpServletRequest.getParameter("grant_type"), "password")
-                && !StringUtils.equalsAnyIgnoreCase(clientId, "swagger")) {
+                && StringUtils.equalsIgnoreCase(httpServletRequest.getParameter("grant_type"), "password")) {
             try {
                 validateCode(httpServletRequest);
                 filterChain.doFilter(httpServletRequest, httpServletResponse);
             } catch (ValidateCodeException e) {
-
-                RocketUtil.makeResponse(httpServletResponse, MediaType.APPLICATION_JSON_VALUE,
+                RocketUtil.response(httpServletResponse, MediaType.APPLICATION_JSON_VALUE,
                         HttpServletResponse.SC_INTERNAL_SERVER_ERROR, RocketResult.failed(e.getMessage()));
                 log.error(e.getMessage(), e);
             }

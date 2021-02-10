@@ -26,7 +26,7 @@ import java.util.List;
  * @Date: 2021/1/20 14:12
  * @Email: wilton.icp@gmail.com
  */
-public abstract class RocketSwaggerConfig {
+public abstract class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {

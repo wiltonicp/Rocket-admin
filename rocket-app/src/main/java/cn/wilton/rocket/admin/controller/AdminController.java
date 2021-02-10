@@ -1,9 +1,7 @@
 package cn.wilton.rocket.admin.controller;
 
 import cn.wilton.framework.core.controller.GenericController;
-import cn.wilton.rocket.admin.service.IAdminService;
 import cn.wilton.rocket.common.entity.system.SystemUser;
-import com.baomidou.mybatisplus.extension.service.IService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +18,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("system")
 @RequiredArgsConstructor
 public class AdminController extends GenericController<SystemUser,SystemUser> {
-
-    private final IAdminService adminService;
 
 }

@@ -1,4 +1,5 @@
 package cn.wilton.rocket.admin;
+import cn.wilton.rocket.common.annotation.EnableRocketLettuceRedis;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -10,8 +11,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @Email: wilton.icp@gmail.com
  */
 @Slf4j
-@MapperScan("cn.wilton.rocket.admin.mapper")
-@SpringBootApplication
+@EnableRocketLettuceRedis
+@SpringBootApplication(scanBasePackages = {"cn.wilton.rocket.admin","cn.wilton.framework.security"})
 public class RocketAdminApplication {
 
     public static void main(String[] args) {

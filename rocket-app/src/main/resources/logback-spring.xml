@@ -169,14 +169,14 @@
 
     <root level="debug">
         <appender-ref ref="console" />
-        <appender-ref ref="LOG_STASH_DEBUG"/>
+<!--        <appender-ref ref="LOG_STASH_DEBUG"/>-->
     </root>
 
     <root level="info">
         <appender-ref ref="file_info" />
         <appender-ref ref="file_error" />
-        <appender-ref ref="LOG_STASH_DEBUG"/>
-        <appender-ref ref="LOG_STASH_ERROR"/>
+<!--        <appender-ref ref="LOG_STASH_DEBUG"/>-->
+<!--        <appender-ref ref="LOG_STASH_ERROR"/>-->
     </root>
 
 <!--    <logger name="com.macro.rocket.common.log.WebLogAspect" level="DEBUG">-->

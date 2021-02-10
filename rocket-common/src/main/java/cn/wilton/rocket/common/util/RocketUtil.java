@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -60,7 +61,7 @@ public class RocketUtil {
      * @param value       响应内容
      * @throws IOException IOException
      */
-    public static void makeResponse(HttpServletResponse response, String contentType,
+    public static void response(HttpServletResponse response, String contentType,
                                     int status, Object value) throws IOException {
         response.setContentType(contentType);
         response.setStatus(status);
@@ -91,6 +92,16 @@ public class RocketUtil {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();
+    }
+
+    /**
+     * 判断是否为 ajax请求
+     * @param request HttpServletRequest
+     * @return boolean
+     */
+    public static boolean isAjaxRequest(HttpServletRequest request) {
+        return (request.getHeader("X-Requested-With") != null
+                && "XMLHttpRequest".equals(request.getHeader("X-Requested-With")));
     }
 
     public static void printStartUpBanner(Environment environment) throws UnknownHostException {

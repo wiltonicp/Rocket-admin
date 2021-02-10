@@ -6,25 +6,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 
 /**
- * Auth相关的配置类
  * @Description
  * @Author: Ranger
- * @Date: 2021/1/25 14:51
+ * @Date: 2021/2/2 16:55
  * @Email: wilton.icp@gmail.com
  */
 @Data
 @SpringBootConfiguration
-@PropertySource(value = {"classpath:wilton-auth.properties"})
-@ConfigurationProperties(prefix = "wilton.auth")
+@ConfigurationProperties(prefix = "rocket.auth")
 public class AuthProperties {
+    /**
+     * JWT加签密钥
+     */
+    private String jwtAccessKey;
 
-    private ClientsProperties[] clients = {};
-    private int accessTokenValiditySeconds = 60 * 60 * 24;
-    private int refreshTokenValiditySeconds = 60 * 60 * 24 * 7;
-
-    // 免认证路径
-    private String anonUrl;
-
-    //验证码配置类
-    private ValidateCodeProperties code = new ValidateCodeProperties();
+    /**
+     * 社交登录所使用的 Client
+     */
+    private String socialLoginClientId;
 }

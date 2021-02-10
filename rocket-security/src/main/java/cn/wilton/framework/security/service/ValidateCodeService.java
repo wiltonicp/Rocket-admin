@@ -1,6 +1,5 @@
 package cn.wilton.framework.security.service;
 
-import cn.wilton.framework.security.properties.AuthProperties;
 import cn.wilton.framework.security.properties.ValidateCodeProperties;
 import cn.wilton.rocket.common.constant.RocketConstant;
 import cn.wilton.rocket.common.exception.ValidateCodeException;
@@ -12,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,12 +23,11 @@ import java.io.IOException;
  * @Date: 2021/1/25 14:48
  * @Email: wilton.icp@gmail.com
  */
+@Service
 public class ValidateCodeService {
 
     @Autowired
     private RedisService redisService;
-    @Autowired
-    private AuthProperties properties;
 
     /**
      * 生成验证码
@@ -41,7 +40,7 @@ public class ValidateCodeService {
         if (StringUtils.isBlank(key)) {
             throw new ValidateCodeException("验证码key不能为空");
         }
-        ValidateCodeProperties code = properties.getCode();
+        ValidateCodeProperties code = new ValidateCodeProperties();
         setHeader(response, code.getType());
 
         Captcha captcha = createCaptcha(code);
