@@ -7,10 +7,7 @@ import cn.wilton.rocket.common.exception.ValidateCodeException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +22,7 @@ import java.security.Principal;
  */
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/auth")
 public class SecurityController {
 
     private final ValidateCodeService validateCodeService;

@@ -20,6 +20,31 @@ var RequestUtil = (function () {
         this.sendAJAX(url, JSON.stringify(params), ft, "DELETE")
     }
 
+    /*GET*/
+    requestUtil.sendGetToHtml = function(url, params){
+        var loadIndex = top.layer.load(0, {shade: false});
+        $.ajax({
+            url: url,
+            cache: false,
+            async: true,
+            data: params,
+            type: 'GET',
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", "bearer " + RequestUtil.getData("access_token"));
+            },
+            success: function (res) {
+                console.log(res)
+            },
+            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                top.layer.close(loadIndex);
+                if(XMLHttpRequest.status==404){
+                    top.window.location.href="/index/404";
+                }else{
+                    layer.msg("服务器好像除了点问题！请稍后试试");
+                }
+            }
+        })
+    }
 
     /*ajax*/
     requestUtil.sendAJAX = function(url, params, ft, method){
@@ -33,7 +58,7 @@ var RequestUtil = (function () {
             contentType: 'application/json; charset=UTF-8',
             dataType: "json",
             beforeSend: function(request) {
-                request.setRequestHeader("Authorization", RequestUtil.getData("access_token"));
+                request.setRequestHeader("Authorization", "bearer " + RequestUtil.getData("access_token"));
             },
             success: function (res) {
                 top.layer.close(loadIndex);

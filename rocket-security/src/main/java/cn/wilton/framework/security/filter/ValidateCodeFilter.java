@@ -40,7 +40,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String header = httpServletRequest.getHeader("Authorization");
 
-        RequestMatcher matcher = new AntPathRequestMatcher("/login", HttpMethod.POST.toString());
+        RequestMatcher matcher = new AntPathRequestMatcher("/oauth", HttpMethod.POST.toString());
         if (matcher.matches(httpServletRequest)
                 && StringUtils.equalsIgnoreCase(httpServletRequest.getParameter("grant_type"), "password")) {
             try {

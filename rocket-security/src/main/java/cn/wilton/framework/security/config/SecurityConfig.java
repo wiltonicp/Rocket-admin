@@ -48,24 +48,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.addFilterBefore(validateCodeFilter,UsernamePasswordAuthenticationFilter.class);
         //不需要保护的资源路径允许访问
         for (String url : ignoreUrlsConfig.getUrls()) {
             http.requestMatchers().antMatchers(url);
         }
-        http.addFilterBefore(validateCodeFilter,UsernamePasswordAuthenticationFilter.class)
-                .authorizeRequests() //开启登录配置
-                .antMatchers("/oauth/**","/login")
-                .authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .successHandler(loginSuccessHandler)
-                .failureHandler(loginFailureHandler)
-                .permitAll()
-                // 自定义权限拦截器JWT过滤器
-                .and().csrf().disable()
-                .httpBasic().disable();
+        http.authorizeRequests() //开启登录配置
+        .antMatchers("/oauth/**").authenticated()
+        .and()
+        .formLogin()
+        .loginPage("/login")
+        .loginProcessingUrl("/login")
+        .successHandler(loginSuccessHandler)
+        .failureHandler(loginFailureHandler)
+        .permitAll()
+        .and().csrf().disable()
+        .httpBasic().disable()
+        .headers().frameOptions().sameOrigin();
     }
 
     @Override

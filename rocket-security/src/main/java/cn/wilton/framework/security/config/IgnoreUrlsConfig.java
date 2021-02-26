@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @Configuration
-@ConfigurationProperties(prefix = "secure.ignored")
+@ConfigurationProperties(prefix = "rocket.security.ignored")
 public class IgnoreUrlsConfig {
 
     private List<String> urls = new ArrayList<>();

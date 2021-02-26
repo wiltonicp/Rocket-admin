@@ -15,7 +15,7 @@
 				<img class="logo" src="admin/images/logo.png" />
 				<div class="title">Rocket Admin</div>
 				<div class="desc">
-					明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一
+					Rocket Admin 后台权限管理系统
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -26,7 +26,7 @@
 			</div>
 			<div class="layui-form-item">
 				<input placeholder="验证码 : " name="code" id="captchaCode"  hover class="code layui-input layui-input-inline"  />
-				<img id="captchaImg" onClick="this.src=this.getAttribute('data-url')+getCode();" src="" data-url="/captcha?key=" class="codeImage" />
+				<img id="captchaImg" onClick="this.src=this.getAttribute('data-url')+getCode();" src="" data-url="/auth/captcha?key=" class="codeImage" />
 			</div>
 			<div class="layui-form-item">
 				<input type="checkbox" name="" title="记住密码" lay-skin="primary" checked>
@@ -40,6 +40,8 @@
 		<!-- 资 源 引 入 -->
 		<script src="/component/layui/layui.js"></script>
 		<script src="/component/pear/pear.js"></script>
+		<script src="/component/jquery.min.js"></script>
+		<script src="/component/js/request.util.js"></script>
 		<script>
 			var codeKey = Math.random();
 			layui.use(['form', 'element', 'jquery', 'button', 'popup'], function() {
@@ -69,18 +71,20 @@
 					}
 					$.ajax({
 						type: 'POST',
-						url: '/login',
+						url: '/oauth/token',
 						dataType: "JSON",
 						data: data,
+						beforeSend: function(request) {
+							request.setRequestHeader("Authorization", "Basic cm9ja2V0OjEyMzQ1Ng==");
+						},
 						success: function (res) {
 							console.log(res)
-							if (res.code == 200) {
-								layui.data('LocalData', {
-									key: "access_token",
-									value: res.data.accessToken
-								})
+							if (res.access_token) {
+								RequestUtil.setData("access_token",res.access_token);
+								RequestUtil.setData("refresh_token",res.refresh_token);
 								layer.msg('登录成功', {time: 1000}, function () {
 									window.location = '/dashboard';
+									//RequestUtil.sendGetToHtml("/dashboard",null);
 								});
 							} else {
 								layer.msg(res.msg);

@@ -1,6 +1,5 @@
 server:
   port: 8080
-# Spring 配置
 spring:
   application:
     name: Rocket-Admin
@@ -25,31 +24,34 @@ rocket:
   auth:
     jwtAccessKey: rocket-admin-secret
     socialLoginClientId:
-
-secure:
-  ignored:
-    urls: #安全路径白名单
-      - /doc.html
-      - /swagger-resources/**
-      - /swagger/**
-      - /**/v2/api-docs
-      - /component/**
-      - /admin/css/**
-      - /admin/images/**
-      - /**/*.js
-      - /**/*.css
-      - /**/*.png
-      - /favicon.ico
-      - /webjars/**
-      - /actuator/**
-      - /druid/**
-      - /login
-      - /oauth/**
-      - /captcha
-      - /auth/token
-      - /auth/register
-      - /auth/info
-      - /auth/logout
+  security:
+    ignored:
+      urls: #安全路径白名单
+        - /doc.html
+        - /swagger-resources/**
+        - /swagger/**
+        - /**/v2/api-docs
+        - /component/**
+        - /admin/css/**
+        - /admin/images/**
+        - /**/*.js
+        - /**/*.css
+        - /**/*.png
+        - /favicon.ico
+        - /webjars/**
+        - /actuator/**
+        - /druid/**
+        - /login
+        - /oauth/**
+        - /auth/captcha
+        - /auth/token
+        - /auth/register
+        - /auth/info
+        - /auth/logout
+        - /dashboard
+        - /config/**
+        - /admin/**
+        - /console/**
 
 
 mybatis-plus:
