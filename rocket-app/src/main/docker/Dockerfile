@@ -7,4 +7,4 @@ VOLUME /tmp
 EXPOSE 8282
 
 ADD rocket-admin-1.0.0.jar /rocket/rocket-admin-1.0.0.jar
-ENTRYPOINT ["java", "-Dspring.profiles.active=dev -Xmx256m", "-jar", "/rocket/rocket-admin-1.0.0.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=dev", "-jar", "/rocket/rocket-admin-1.0.0.jar"]

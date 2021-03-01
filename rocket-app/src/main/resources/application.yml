@@ -1,5 +1,7 @@
 server:
   port: 8282
+  servlet:
+    context-path: /api
 spring:
   application:
     name: Rocket-Admin
