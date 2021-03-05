@@ -22,7 +22,7 @@ public class AuthWebResponseExceptionTranslator implements WebResponseExceptionT
 
     @Override
     public ResponseEntity<?> translate(Exception e) {
-        ResponseEntity.BodyBuilder status = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity.BodyBuilder status = ResponseEntity.status(HttpStatus.OK);
         String message = "认证失败";
         log.error(message, e);
         if (e instanceof UnsupportedGrantTypeException) {

@@ -7,6 +7,7 @@ import cn.wilton.rocket.common.util.RocketUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -38,9 +39,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        String header = httpServletRequest.getHeader("Authorization");
 
-        RequestMatcher matcher = new AntPathRequestMatcher("/oauth", HttpMethod.POST.toString());
+        RequestMatcher matcher = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.toString());
         if (matcher.matches(httpServletRequest)
                 && StringUtils.equalsIgnoreCase(httpServletRequest.getParameter("grant_type"), "password")) {
             try {
@@ -48,7 +48,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
                 filterChain.doFilter(httpServletRequest, httpServletResponse);
             } catch (ValidateCodeException e) {
                 RocketUtil.response(httpServletResponse, MediaType.APPLICATION_JSON_VALUE,
-                        HttpServletResponse.SC_INTERNAL_SERVER_ERROR, RocketResult.failed(e.getMessage()));
+                        HttpServletResponse.SC_OK, RocketResult.failed(e.getMessage()));
                 log.error(e.getMessage(), e);
             }
         } else {
@@ -60,22 +60,5 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
         String code = httpServletRequest.getParameter("code");
         String key = httpServletRequest.getParameter("key");
         validateCodeService.check(key, code);
-    }
-
-    private String getClientId(String header, HttpServletRequest request) {
-        String clientId = "";
-        try {
-            byte[] base64Token = header.substring(6).getBytes(StandardCharsets.UTF_8);
-            byte[] decoded;
-            decoded = Base64.getDecoder().decode(base64Token);
-
-            String token = new String(decoded, StandardCharsets.UTF_8);
-            int delim = token.indexOf(":");
-            if (delim != -1) {
-                clientId = new String[]{token.substring(0, delim), token.substring(delim + 1)}[0];
-            }
-        } catch (Exception ignore) {
-        }
-        return clientId;
     }
 }

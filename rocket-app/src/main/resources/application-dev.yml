@@ -14,7 +14,7 @@ spring:
           password: Wilton2019
   redis:
     database: 0
-    host: 211.149.224.209
+    host: 127.0.0.1
     port: 6379
     password:
     lettuce:

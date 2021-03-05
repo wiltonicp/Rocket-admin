@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @Email: wilton.icp@gmail.com
  */
 @RestControllerAdvice
-@Order(value = Ordered.HIGHEST_PRECEDENCE)
+//@Order(value = Ordered.HIGHEST_PRECEDENCE)
 public class GlobalExceptionHandler extends BaseExceptionHandler {
 }

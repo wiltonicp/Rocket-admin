@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  */
 @Slf4j
 @EnableRocketLettuceRedis
-@SpringBootApplication(scanBasePackages = {"cn.wilton.rocket.admin","cn.wilton.framework.security"})
+@SpringBootApplication(scanBasePackages = {"cn.wilton.rocket.admin","cn.wilton.framework.security","cn.wilton.rocket.common"})
 public class RocketAdminApplication {
 
     public static void main(String[] args) {

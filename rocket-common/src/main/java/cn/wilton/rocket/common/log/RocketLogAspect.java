@@ -41,7 +41,7 @@ import java.util.Map;
 @Order(1)
 public class RocketLogAspect {
 
-    @Pointcut("execution(public * cn.wilton.rocket.admin.controller.*.*(..))||execution(public * cn.wilton.rocket.*.controller.*.*(..))")
+    @Pointcut("execution(public * cn.wilton.rocket.*.controller.*.*(..))||execution(public * cn.wilton.rocket.*.controller.*.*(..))")
     public void webLog() {
     }
 

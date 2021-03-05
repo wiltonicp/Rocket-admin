@@ -2,17 +2,22 @@ package cn.wilton.rocket.common.handler;
 
 import cn.wilton.rocket.common.api.ResultCode;
 import cn.wilton.rocket.common.api.RocketResult;
+import cn.wilton.rocket.common.exception.BizException;
 import cn.wilton.rocket.common.exception.RocketAuthException;
 import cn.wilton.rocket.common.exception.RocketException;
+import cn.wilton.rocket.common.exception.ValidateCodeException;
+import com.baomidou.mybatisplus.extension.api.IErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.security.auth.message.AuthException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Path;
@@ -32,11 +37,36 @@ import java.util.Set;
 @Slf4j
 public class BaseExceptionHandler {
 
+
     @ExceptionHandler(value = RocketException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     public RocketResult handleBaseException(RocketException e) {
         log.error("Rocket Admin系统异常", e);
         return RocketResult.failed(e.getMessage());
+    }
+
+    /**
+     * 处理自定义的业务异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = BizException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public RocketResult bizExceptionHandler(BizException e){
+        log.error("发生业务异常！原因是：{}",e.getErrorMsg());
+        return RocketResult.failed(e.getMessage());
+    }
+
+    /**
+     * 处理空指针的异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value =NullPointerException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public RocketResult exceptionHandler(NullPointerException e){
+        log.error("发生空指针异常！原因是:",e);
+        return RocketResult.failed(ResultCode.BODY_NOT_MATCH);
     }
 
     /**
@@ -46,7 +76,7 @@ public class BaseExceptionHandler {
      * @return RocketResult
      */
     @ExceptionHandler(BindException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.OK)
     public RocketResult handleBindException(BindException e) {
         StringBuilder message = new StringBuilder();
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
@@ -64,7 +94,7 @@ public class BaseExceptionHandler {
      * @return RocketResult
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.OK)
     public RocketResult handleConstraintViolationException(ConstraintViolationException e) {
         StringBuilder message = new StringBuilder();
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
@@ -78,28 +108,30 @@ public class BaseExceptionHandler {
     }
 
     @ExceptionHandler(value = RocketAuthException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     public RocketResult handleWiltonException(RocketException e) {
         log.error("系统错误", e);
         return RocketResult.failed(e.getMessage());
     }
 
     @ExceptionHandler(value = Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     public RocketResult handleException(Exception e) {
         log.error("系统内部异常，异常信息", e);
         return RocketResult.failed("系统内部异常");
     }
 
-    @ExceptionHandler(value = RocketAuthException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public RocketResult handleWiltonAuthException(RocketAuthException e) {
+    @ExceptionHandler(value = ValidateCodeException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public RocketResult handleValidateCodeException(ValidateCodeException e) {
         log.error("系统错误", e);
         return RocketResult.failed(e.getMessage());
     }
 
+
+
     @ExceptionHandler(value = AccessDeniedException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.OK)
     public RocketResult handleAccessDeniedException(){
         return RocketResult.failed(ResultCode.FORBIDDEN);
     }

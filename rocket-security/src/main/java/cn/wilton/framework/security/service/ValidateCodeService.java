@@ -50,7 +50,6 @@ public class ValidateCodeService {
 
     /**
      * 校验验证码
-     *
      * @param key   前端上送 key
      * @param value 前端上送待校验值
      */

@@ -32,7 +32,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <skipTests>true</skipTests>
-        <docker.host>http://211.149.224.209:2375</docker.host>
+        <docker.host>http://106.14.244.70:2375</docker.host>
         <docker.maven.plugin.version>1.2.2</docker.maven.plugin.version>
         <docker.image.prefix>rocket-admin</docker.image.prefix>
         <mysql-connector.version>8.0.11</mysql-connector.version>
