@@ -8,8 +8,6 @@ import cn.wilton.rocket.common.entity.system.SystemUser;
 import cn.wilton.rocket.common.exception.RocketAuthException;
 import cn.wilton.rocket.common.exception.RocketException;
 import cn.wilton.rocket.common.exception.ValidateCodeException;
-import com.alibaba.fastjson.JSONObject;
-import com.sun.javafx.binding.StringConstant;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
@@ -23,10 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Description
- * @Author: Ranger
- * @Date: 2021/1/25 16:02
- * @Email: wilton.icp@gmail.com
+ * @author Ranger
+ * @date: 2021/3/6 14:36
+ * @email: wilton.icp@gmail.com
  */
 @RestController
 @RequiredArgsConstructor

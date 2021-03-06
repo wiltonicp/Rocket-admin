@@ -1,6 +1,5 @@
-package cn.wilton.framework.security.entity;
+package cn.wilton.rocket.common.entity.system;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

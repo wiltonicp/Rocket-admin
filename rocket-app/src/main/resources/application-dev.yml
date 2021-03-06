@@ -14,9 +14,9 @@ spring:
           password: Wilton2019
   redis:
     database: 0
-    host: 127.0.0.1
+    host: 106.14.244.70
     port: 6379
-    password:
+    password: RocketAdmin123
     lettuce:
       pool:
         min-idle: 8 # 连接池中的最小空闲连接

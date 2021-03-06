@@ -53,6 +53,8 @@
                     <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <dockerHost>${docker.host}</dockerHost>
+                    <!-- 指定tls证书的目录 -->
+                    <dockerCertPath>${docker.cert.path}</dockerCertPath>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>

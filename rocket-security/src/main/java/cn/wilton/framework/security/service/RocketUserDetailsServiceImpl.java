@@ -1,7 +1,7 @@
 package cn.wilton.framework.security.service;
 
-import cn.wilton.framework.security.entity.AdminAuthUser;
 import cn.wilton.framework.security.manager.service.UserManager;
+import cn.wilton.rocket.common.entity.system.AdminAuthUser;
 import cn.wilton.rocket.common.entity.system.SystemUser;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -10,7 +10,6 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**

@@ -33,10 +33,15 @@
         <java.version>1.8</java.version>
         <skipTests>true</skipTests>
         <docker.host>http://106.14.244.70:2375</docker.host>
+        <docker.cert.path>/Users/wilton/software/docker-cert</docker.cert.path>
         <docker.maven.plugin.version>1.2.2</docker.maven.plugin.version>
         <docker.image.prefix>rocket-admin</docker.image.prefix>
         <mysql-connector.version>8.0.11</mysql-connector.version>
         <hutool.version>5.4.0</hutool.version>
+        <ip2region.version>1.7</ip2region.version>
+        <xml-api.version>1.4.01</xml-api.version>
+        <guava.version>27.0-jre</guava.version>
+        <excelkit.version>2.0.71</excelkit.version>
         <knife4j.version>2.0.2</knife4j.version>
         <swagger2.version>2.9.2</swagger2.version>
         <swagger-models.version>1.6.0</swagger-models.version>
@@ -44,7 +49,7 @@
         <spring-data-commons.version>2.3.0.RELEASE</spring-data-commons.version>
         <jjwt.version>0.9.1</jjwt.version>
         <aliyun-oss.version>2.5.0</aliyun-oss.version>
-        <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <fastjson.version>1.2.62</fastjson.version>
         <dynamic-datasource.version>2.5.4</dynamic-datasource.version>
         <logstash-logback.version>6.1</logstash-logback.version>

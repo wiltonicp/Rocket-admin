@@ -34,6 +34,6 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
         } else {
             message = "认证失败，请联系网站管理员！";
         }
-        RocketUtil.response(httpServletResponse, MediaType.APPLICATION_JSON_VALUE, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, RocketResult.failed(message));
+        RocketUtil.response(httpServletResponse, MediaType.APPLICATION_JSON_VALUE, HttpServletResponse.SC_OK, RocketResult.failed(message));
     }
 }

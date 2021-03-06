@@ -27,16 +27,7 @@ public abstract class GenericController<V,T> {
     @Autowired(required = false)
     private IGenericService<V,T> genericService;
 
-    @RequestMapping(value = {"/{method}"},method = RequestMethod.GET)
-    @PreAuthorize("hasAnyAuthority('user:view')")
-    public ModelAndView execute(HttpServletRequest request,
-                                @PathVariable("method") String method, ModelAndView mv) {
-        String controllerMapping = ((RequestMapping)this.getClass().getAnnotation(RequestMapping.class)).value()[0];
-        mv.setViewName("view/" + controllerMapping + "/" + method);
-        return mv;
-    }
-
-    @GetMapping("page")
+    @GetMapping()
     @ApiOperation(value = "查询分页接口")
     @ApiOperationSupport(author = "Ranger")
     public RocketResult<PageInfo<V>> page(V entityVo) {
@@ -50,7 +41,7 @@ public abstract class GenericController<V,T> {
         return genericService.list(entityVo);
     }
 
-    @GetMapping("get/{id}")
+    @GetMapping("/{id}")
     @ApiOperation(value = "根据 id 查询接口")
     @ApiOperationSupport(author = "Ranger")
     @ApiImplicitParams({
@@ -60,7 +51,7 @@ public abstract class GenericController<V,T> {
         return genericService.get(id);
     }
 
-    @GetMapping("save")
+    @PutMapping()
     @ApiOperation(value = "保存接口")
     @ApiOperationSupport(author = "Ranger")
     @PreAuthorize("hasAnyAuthority('user:add')")
@@ -68,7 +59,7 @@ public abstract class GenericController<V,T> {
         return genericService.save(entityVo);
     }
 
-    @GetMapping("delete/{id}")
+    @DeleteMapping("delete/{id}")
     @ApiOperation(value = "根据 id 删除接口")
     @ApiOperationSupport(author = "Ranger")
     @ApiImplicitParams({

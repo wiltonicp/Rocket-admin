@@ -16,10 +16,9 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
- * @Description
- * @Author: Ranger
- * @Date: 2021/1/15 11:07
- * @Email: wilton.icp@gmail.com
+ * @author Ranger
+ * @date: 2021/3/6 15:58
+ * @email: wilton.icp@gmail.com
  */
 @Data
 @TableName("t_user")
@@ -133,5 +132,8 @@ public class SystemUser extends RocketEntity implements Serializable {
 
     @TableField(exist = false)
     private String roleName;
+
+    @TableField(exist = false)
+    private String deptIds;
 
 }
