@@ -3,6 +3,7 @@ package cn.wilton.rocket.admin.mapper;
 import cn.wilton.rocket.common.entity.system.LoginLog;
 import cn.wilton.rocket.common.entity.system.SystemUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Map;
  * @date: 2021/3/6 16:26
  * @email: wilton.icp@gmail.com
  */
+@Repository
 public interface LoginLogMapper extends BaseMapper<LoginLog> {
 
     /**

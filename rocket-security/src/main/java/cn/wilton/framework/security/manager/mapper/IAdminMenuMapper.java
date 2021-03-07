@@ -13,7 +13,7 @@ import java.util.List;
  * @Email: wilton.icp@gmail.com
  */
 @Repository
-public interface IMenuMapper extends GenericMapper<Menu> {
+public interface IAdminMenuMapper extends GenericMapper<Menu> {
     /**
      * 通过用户名查找用户权限集合
      * @param username

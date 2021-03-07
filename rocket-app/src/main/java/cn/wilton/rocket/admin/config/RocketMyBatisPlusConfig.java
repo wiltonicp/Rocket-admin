@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * @Email: wilton.icp@gmail.com
  */
 @Configuration
-@MapperScan("cn.wilton.rocket.admin.mapper")
+@MapperScan({"cn.wilton.rocket.admin.mapper","cn.wilton.framework.security.manager.mapper"})
 public class RocketMyBatisPlusConfig extends MybatisPlusConfig {
 }

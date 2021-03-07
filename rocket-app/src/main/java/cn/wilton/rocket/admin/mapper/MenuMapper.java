@@ -2,6 +2,7 @@ package cn.wilton.rocket.admin.mapper;
 
 import cn.wilton.rocket.common.entity.system.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @date: 2021/3/6 17:00
  * @email: wilton.icp@gmail.com
  */
+@Repository
 public interface MenuMapper extends BaseMapper<Menu> {
 
     /**

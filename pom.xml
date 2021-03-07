@@ -41,7 +41,7 @@
         <ip2region.version>1.7</ip2region.version>
         <xml-api.version>1.4.01</xml-api.version>
         <guava.version>27.0-jre</guava.version>
-        <excelkit.version>2.0.71</excelkit.version>
+        <excelkit.version>2.0.72</excelkit.version>
         <knife4j.version>2.0.2</knife4j.version>
         <swagger2.version>2.9.2</swagger2.version>
         <swagger-models.version>1.6.0</swagger-models.version>
@@ -141,7 +141,16 @@
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
             </releases>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
     <pluginRepositories>

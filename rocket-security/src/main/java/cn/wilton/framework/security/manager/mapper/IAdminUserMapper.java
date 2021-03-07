@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @Email: wilton.icp@gmail.com
  */
 @Repository
-public interface IUserMapper extends GenericMapper<SystemUser> {
+public interface IAdminUserMapper extends GenericMapper<SystemUser> {
 
     /**
      * 获取用户

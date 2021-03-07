@@ -1,4 +1,4 @@
-package cn.wilton.rocket.common.configure;
+package cn.wilton.rocket.admin.configure;
 
 import cn.wilton.rocket.common.util.DateUtil;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;

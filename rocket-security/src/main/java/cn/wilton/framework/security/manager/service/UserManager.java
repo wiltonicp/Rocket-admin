@@ -1,11 +1,10 @@
 package cn.wilton.framework.security.manager.service;
 
-import cn.wilton.framework.security.manager.mapper.IMenuMapper;
-import cn.wilton.framework.security.manager.mapper.IUserMapper;
+import cn.wilton.framework.security.manager.mapper.IAdminMenuMapper;
+import cn.wilton.framework.security.manager.mapper.IAdminUserMapper;
 import cn.wilton.rocket.common.entity.system.Menu;
 import cn.wilton.rocket.common.entity.system.SystemUser;
-import com.sun.javafx.binding.StringConstant;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +19,13 @@ import java.util.stream.Collectors;
  * @Email: wilton.icp@gmail.com
  */
 @Service
-@RequiredArgsConstructor
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class UserManager {
 
-    private final IUserMapper userMapper;
-    private final IMenuMapper menuMapper;
+    @Autowired
+    private IAdminUserMapper adminUserMapper;
+    @Autowired
+    private IAdminMenuMapper adminMenuMapper;
 
     /**
      * 通过用户名查询用户信息
@@ -33,7 +33,7 @@ public class UserManager {
      * @return 用户
      */
     public SystemUser findByName(String username) {
-        SystemUser user = userMapper.findByName(username);
+        SystemUser user = adminUserMapper.findByName(username);
         if (user != null) {
         }
         return user;
@@ -46,7 +46,7 @@ public class UserManager {
      * @return 权限
      */
     public String findUserPermission(String username) {
-        List<Menu> userPermissions = menuMapper.findUserPermission(username);
+        List<Menu> userPermissions = adminMenuMapper.findUserPermission(username);
         return userPermissions.stream().map(Menu::getPerms).collect(Collectors.joining(","));
     }
 }

@@ -9,10 +9,9 @@ import org.springframework.context.annotation.Import;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
- * @Description
- * @Author: Ranger
- * @Date: 2021/1/20 14:12
- * @Email: wilton.icp@gmail.com
+ * @author Ranger
+ * @date: 2021/1/20 14:12
+ * @email: wilton.icp@gmail.com
  */
 @Configuration
 @EnableSwagger2
