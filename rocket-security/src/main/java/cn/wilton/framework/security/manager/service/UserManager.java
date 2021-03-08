@@ -4,6 +4,7 @@ import cn.wilton.framework.security.manager.mapper.IAdminMenuMapper;
 import cn.wilton.framework.security.manager.mapper.IAdminUserMapper;
 import cn.wilton.rocket.common.entity.system.Menu;
 import cn.wilton.rocket.common.entity.system.SystemUser;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,13 +20,12 @@ import java.util.stream.Collectors;
  * @Email: wilton.icp@gmail.com
  */
 @Service
+@RequiredArgsConstructor
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class UserManager {
 
-    @Autowired
-    private IAdminUserMapper adminUserMapper;
-    @Autowired
-    private IAdminMenuMapper adminMenuMapper;
+    private final IAdminUserMapper adminUserMapper;
+    private final IAdminMenuMapper adminMenuMapper;
 
     /**
      * 通过用户名查询用户信息

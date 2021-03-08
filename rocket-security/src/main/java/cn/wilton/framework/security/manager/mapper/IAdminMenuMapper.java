@@ -2,6 +2,7 @@ package cn.wilton.framework.security.manager.mapper;
 
 import cn.wilton.framework.core.mapper.GenericMapper;
 import cn.wilton.rocket.common.entity.system.Menu;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * @Date: 2021/1/25 16:32
  * @Email: wilton.icp@gmail.com
  */
+@Mapper
 @Repository
 public interface IAdminMenuMapper extends GenericMapper<Menu> {
     /**
