@@ -36,7 +36,7 @@ public class LoginLogController {
     @ApiOperation(value = "列表")
     public RocketResult loginLogList(LoginLog loginLog, QueryRequest request) {
         Map<String, Object> dataTable = RocketUtil.getDataTable(this.loginLogService.findLoginLogs(loginLog, request));
-        return RocketResult.success(dataTable);
+        return RocketResult.data(dataTable);
     }
 
 
@@ -45,7 +45,7 @@ public class LoginLogController {
     public RocketResult getUserLastSevenLoginLogs() {
         String currentUsername = RocketUtil.getCurrentUsername();
         List<LoginLog> userLastSevenLoginLogs = this.loginLogService.findUserLastSevenLoginLogs(currentUsername);
-        return RocketResult.success(userLastSevenLoginLogs);
+        return RocketResult.data(userLastSevenLoginLogs);
     }
 
     @DeleteMapping("{ids}")

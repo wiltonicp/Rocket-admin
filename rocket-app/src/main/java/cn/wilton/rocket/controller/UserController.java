@@ -36,7 +36,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("user")
-@Api(tags = "用户管理")
+@Api(tags = "用户管理模块")
 public class UserController {
 
     private final IUserService userService;
@@ -46,15 +46,14 @@ public class UserController {
 
     @GetMapping("success")
     @ApiOperation(value = "登录成功保存用户登录日志")
-    public void loginSuccess(HttpServletRequest request) {
+    public RocketResult loginSuccess(HttpServletRequest request) {
         String currentUsername = RocketUtil.getCurrentUsername();
-        // update last login time
         this.userService.updateLoginTime(currentUsername);
-        // save login log
         LoginLog loginLog = new LoginLog();
         loginLog.setUsername(currentUsername);
         loginLog.setSystemBrowserInfo(request.getHeader("user-agent"));
         this.loginLogService.saveLoginLog(loginLog);
+        return RocketResult.success();
     }
 
 
@@ -63,7 +62,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('user:view')")
     public RocketResult userList(QueryRequest queryRequest, SystemUser user) {
         Map<String, Object> dataTable = RocketUtil.getDataTable(userService.findUserDetailList(user, queryRequest));
-        return RocketResult.success(dataTable);
+        return RocketResult.data(dataTable);
     }
 
     @GetMapping("check/{username}")
@@ -76,15 +75,17 @@ public class UserController {
     @PostMapping
     @PreAuthorize("hasAuthority('user:add')")
     @ApiOperation(value = "新增用户")
-    public void addUser(@Valid SystemUser user) {
+    public RocketResult addUser(@Valid SystemUser user) {
         this.userService.createUser(user);
+        return RocketResult.success();
     }
 
     @PutMapping
     @PreAuthorize("hasAuthority('user:update')")
     @ApiOperation(value = "修改用户")
-    public void updateUser(@Valid SystemUser user) {
+    public RocketResult updateUser(@Valid SystemUser user) {
         this.userService.updateUser(user);
+        return RocketResult.success();
     }
 
     @GetMapping("/{userId}")
@@ -98,21 +99,24 @@ public class UserController {
     @DeleteMapping("/{userIds}")
     @PreAuthorize("hasAuthority('user:delete')")
     @ApiOperation(value = "删除用户")
-    public void deleteUsers(@NotBlank(message = "{required}") @PathVariable String userIds) {
+    public RocketResult deleteUsers(@NotBlank(message = "{required}") @PathVariable String userIds) {
         String[] ids = userIds.split(",");
         this.userService.deleteUsers(ids);
+        return RocketResult.success();
     }
 
     @PutMapping("profile")
     @ApiOperation(value = "修改个人信息")
-    public void updateProfile(@Valid SystemUser user) throws RocketException {
+    public RocketResult updateProfile(@Valid SystemUser user) throws RocketException {
         this.userService.updateProfile(user);
+        return RocketResult.success();
     }
 
     @PutMapping("avatar")
     @ApiOperation(value = "修改头像")
-    public void updateAvatar(@NotBlank(message = "{required}") String avatar) {
+    public RocketResult updateAvatar(@NotBlank(message = "{required}") String avatar) {
         this.userService.updateAvatar(avatar);
+        return RocketResult.success();
     }
 
     @GetMapping("password/check")
@@ -125,16 +129,18 @@ public class UserController {
 
     @PutMapping("password")
     @ApiOperation(value = "修改密码")
-    public void updatePassword(@NotBlank(message = "{required}") String password) {
+    public RocketResult updatePassword(@NotBlank(message = "{required}") String password) {
         userService.updatePassword(password);
+        return RocketResult.success();
     }
 
     @PutMapping("password/reset")
     @PreAuthorize("hasAuthority('user:reset')")
     @ApiOperation(value = "重置用户密码")
-    public void resetPassword(@NotBlank(message = "{required}") String usernames) {
+    public RocketResult resetPassword(@NotBlank(message = "{required}") String usernames) {
         String[] usernameArr = usernames.split(",");
         this.userService.resetPassword(usernameArr);
+        return RocketResult.success();
     }
 
     @PostMapping("excel")

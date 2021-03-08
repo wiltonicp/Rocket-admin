@@ -8,6 +8,8 @@ import cn.wilton.rocket.common.entity.system.SystemUser;
 import cn.wilton.rocket.common.exception.RocketAuthException;
 import cn.wilton.rocket.common.exception.RocketException;
 import cn.wilton.rocket.common.exception.ValidateCodeException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
@@ -28,6 +30,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
+@Api(tags = "认证模块")
 public class SecurityController {
 
     private final UserManager userManager;
@@ -42,6 +45,7 @@ public class SecurityController {
      * @throws ValidateCodeException
      */
     @GetMapping("captcha")
+    @ApiOperation(value = "生成验证码")
     public void captcha(HttpServletRequest request, HttpServletResponse response) throws IOException, ValidateCodeException {
         validateCodeService.create(request, response);
     }
@@ -52,6 +56,7 @@ public class SecurityController {
      * @return
      */
     @GetMapping("user")
+    @ApiOperation(value = "获取当前登录用户")
     public RocketResult currentUser(Principal principal) {
         Map<String, Object> result = new HashMap<>(2);
         if(principal==null){
@@ -67,7 +72,7 @@ public class SecurityController {
         result.put("username",username);
         result.put("avatar",user.getAvatar());
         result.put("permissions",permissionArray);
-        return RocketResult.success(result);
+        return RocketResult.data(result);
     }
 
     /**
@@ -77,6 +82,7 @@ public class SecurityController {
      * @throws RocketAuthException
      */
     @DeleteMapping("signout")
+    @ApiOperation(value = "注销当前Token")
     public RocketResult signout(@RequestHeader("Authorization") String token) throws RocketAuthException {
         token = StringUtils.replace(token, "bearer ", "");
         consumerTokenServices.revokeToken(token);

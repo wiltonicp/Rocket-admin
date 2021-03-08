@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -45,6 +46,7 @@ public class SystemUser extends RocketEntity implements Serializable {
      * 用户 ID
      */
     @TableId(value = "USER_ID", type = IdType.AUTO)
+    @ApiModelProperty(value = "用户id")
     private Long userId;
 
     /**
@@ -52,18 +54,21 @@ public class SystemUser extends RocketEntity implements Serializable {
      */
     @TableField("USERNAME")
     @Size(min = 4, max = 10, message = "{range}")
+    @ApiModelProperty(value = "用户名")
     private String username;
 
     /**
      * 密码
      */
     @TableField("PASSWORD")
+    @ApiModelProperty(value = "密码")
     private String password;
 
     /**
      * 部门 ID
      */
     @TableField("DEPT_ID")
+    @ApiModelProperty(value = "部门 ID")
     private Long deptId;
 
     /**
@@ -72,6 +77,7 @@ public class SystemUser extends RocketEntity implements Serializable {
     @TableField("EMAIL")
     @Size(max = 50, message = "{noMoreThan}")
     @Email(message = "{email}")
+    @ApiModelProperty(value = "邮箱")
     private String email;
 
     /**
@@ -79,6 +85,7 @@ public class SystemUser extends RocketEntity implements Serializable {
      */
     @TableField("MOBILE")
     @IsMobile(message = "{mobile}")
+    @ApiModelProperty(value = "手机号")
     private String mobile;
 
     /**
@@ -86,12 +93,14 @@ public class SystemUser extends RocketEntity implements Serializable {
      */
     @TableField("STATUS")
     @NotBlank(message = "{required}")
+    @ApiModelProperty(value = "状态：0锁定 1有效")
     private String status;
 
     /**
      * 最近访问时间
      */
     @TableField("LAST_LOGIN_TIME")
+    @ApiModelProperty(value = "最近访问时间")
     private LocalDateTime lastLoginTime;
 
     /**
@@ -99,12 +108,14 @@ public class SystemUser extends RocketEntity implements Serializable {
      */
     @TableField("SSEX")
     @NotBlank(message = "{required}")
+    @ApiModelProperty(value = "性别 0男 1女 2 保密")
     private String sex;
 
     /**
      * 头像
      */
     @TableField("AVATAR")
+    @ApiModelProperty(value = "头像")
     private String avatar;
 
     /**
@@ -112,12 +123,14 @@ public class SystemUser extends RocketEntity implements Serializable {
      */
     @TableField("DESCRIPTION")
     @Size(max = 100, message = "{noMoreThan}")
+    @ApiModelProperty(value = "描述")
     private String description;
 
     /**
      * 部门名称
      */
     @TableField(exist = false)
+    @ApiModelProperty(value = "部门名称")
     private String deptName;
 
     @TableField(exist = false)

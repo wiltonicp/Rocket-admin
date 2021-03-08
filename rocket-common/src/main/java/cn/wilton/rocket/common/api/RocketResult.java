@@ -49,6 +49,15 @@ public class RocketResult<T> {
      * @param <T>
      * @return
      */
+    public static <T> RocketResult<T> success() {
+        return new RocketResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage());
+    }
+
+    /**
+     * 成功
+     * @param <T>
+     * @return
+     */
     public static <T> RocketResult<T> success(String message) {
         return new RocketResult<T>(ResultCode.SUCCESS.getCode(), message);
     }
@@ -57,7 +66,7 @@ public class RocketResult<T> {
      * 成功返回结果
      * @param data 获取的数据
      */
-    public static <T> RocketResult<T> success(T data) {
+    public static <T> RocketResult<T> data(T data) {
         return new RocketResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 

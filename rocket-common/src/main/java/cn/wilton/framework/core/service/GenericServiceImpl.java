@@ -79,7 +79,7 @@ public abstract class GenericServiceImpl<V,T> implements IGenericService<V,T>{
         PageInfo<V> pageInfo = PageInfo.of(page, entityVoClass);
         pageInfo.setField(QueryRequest.getField());
         pageInfo.setOrder(QueryRequest.getOrder());
-        return RocketResult.success(pageInfo);
+        return RocketResult.data(pageInfo);
     }
 
     @Override
@@ -87,12 +87,12 @@ public abstract class GenericServiceImpl<V,T> implements IGenericService<V,T>{
         T entity = CoreUtil.copy(entityVo, entityClass);
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.setEntity(entity);
-        return RocketResult.success(CoreUtil.copyList(genericMapper.selectList(queryWrapper),entityVoClass));
+        return RocketResult.data(CoreUtil.copyList(genericMapper.selectList(queryWrapper),entityVoClass));
     }
 
     @Override
     public RocketResult<V> get(String id) {
-        return RocketResult.success(CoreUtil.copy(genericMapper.selectById(id),entityVoClass));
+        return RocketResult.data(CoreUtil.copy(genericMapper.selectById(id),entityVoClass));
     }
 
     @Override
@@ -148,7 +148,7 @@ public abstract class GenericServiceImpl<V,T> implements IGenericService<V,T>{
             genericMapper.updateById(entityFull);
         }
 
-        return RocketResult.success(CoreUtil.copy(entityFull,entityVoClass));
+        return RocketResult.data(CoreUtil.copy(entityFull,entityVoClass));
     }
 
     @Override
