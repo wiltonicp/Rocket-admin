@@ -1,4 +1,4 @@
-package cn.wilton.rocket.entity;
+package cn.wilton.rocket.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

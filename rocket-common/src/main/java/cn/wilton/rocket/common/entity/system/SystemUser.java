@@ -34,7 +34,7 @@ public class SystemUser extends RocketEntity implements Serializable {
     // 默认头像
     public static final String DEFAULT_AVATAR = "default.jpg";
     // 默认密码
-    public static final String DEFAULT_PASSWORD = "1234qwer";
+    public static final String DEFAULT_PASSWORD = "rocket123";
     // 性别男
     public static final String SEX_MALE = "0";
     // 性别女
@@ -134,9 +134,9 @@ public class SystemUser extends RocketEntity implements Serializable {
     private String deptName;
 
     @TableField(exist = false)
-    private String createTimeFrom;
+    private String createdTimeFrom;
     @TableField(exist = false)
-    private String createTimeTo;
+    private String createdTimeTo;
     /**
      * 角色 ID
      */

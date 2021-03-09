@@ -107,6 +107,9 @@ public class RocketUtil {
      */
     public static Map<String, Object> getDataTable(IPage<?> pageInfo) {
         Map<String, Object> data = new HashMap<>();
+        data.put("pageNum", pageInfo.getCurrent());
+        data.put("pageSize", pageInfo.getSize());
+        data.put("pages", pageInfo.getPages());
         data.put("rows", pageInfo.getRecords());
         data.put("total", pageInfo.getTotal());
         return data;

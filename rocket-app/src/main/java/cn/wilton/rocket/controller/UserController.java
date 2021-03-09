@@ -1,5 +1,8 @@
 package cn.wilton.rocket.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.wilton.rocket.common.annotation.ControllerLogAspect;
+import cn.wilton.rocket.dto.UserAddInput;
 import cn.wilton.rocket.service.ILoginLogService;
 import cn.wilton.rocket.service.IUserDataPermissionService;
 import cn.wilton.rocket.service.IUserService;
@@ -60,6 +63,7 @@ public class UserController {
     @GetMapping
     @ApiOperation(value = "查询用户")
     @PreAuthorize("hasAuthority('user:view')")
+    @ControllerLogAspect
     public RocketResult userList(QueryRequest queryRequest, SystemUser user) {
         Map<String, Object> dataTable = RocketUtil.getDataTable(userService.findUserDetailList(user, queryRequest));
         return RocketResult.data(dataTable);
@@ -75,7 +79,9 @@ public class UserController {
     @PostMapping
     @PreAuthorize("hasAuthority('user:add')")
     @ApiOperation(value = "新增用户")
-    public RocketResult addUser(@Valid SystemUser user) {
+    public RocketResult addUser(@Valid UserAddInput input) {
+        SystemUser user = new SystemUser();
+        BeanUtil.copyProperties(input,user);
         this.userService.createUser(user);
         return RocketResult.success();
     }
