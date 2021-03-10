@@ -13,18 +13,23 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
+ * 修改用户入参
  * @author Ranger
- * @date: 2021/3/9 17:20
+ * @since 2021/3/10
  * @email: wilton.icp@gmail.com
  */
 @Getter
 @Setter
 @EqualsAndHashCode
-@ApiModel("新增用户入参")
-public class UserAddInput implements Serializable {
+@ApiModel("修改用户入参")
+public class UserUpdateInput implements Serializable {
+
+
+    @ApiModelProperty(value = "用户id",required = true)
+    private Long userId;
 
     @Size(min = 4, max = 10, message = "{range}")
-    @ApiModelProperty(value = "用户名",required = true)
+    @ApiModelProperty(value = "用户名")
     private String username;
 
     @Size(max = 50, message = "{noMoreThan}")
@@ -33,7 +38,7 @@ public class UserAddInput implements Serializable {
     private String email;
 
     @IsMobile(message = "{mobile}")
-    @ApiModelProperty(value = "手机号",required = true)
+    @ApiModelProperty(value = "手机号")
     private String mobile;
 
     @NotBlank(message = "{required}")

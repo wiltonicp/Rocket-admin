@@ -36,8 +36,8 @@ public class QueryRequest implements Serializable {
     /**
      * 排序字段
      */
-    @ApiModelProperty(value = "排序字段", required = false, example = "created_time")
-    private String field = "created_time";
+    @ApiModelProperty(value = "排序字段", required = false, example = "createdTime")
+    private String field = "createdTime";
     /**
      * 排序规则，asc升序，desc降序
      */

@@ -8,7 +8,7 @@
         u.email,
         u.mobile,
         u.status,
-        u.created_time createdTime,
+        u.created_time AS createdTime,
         u.ssex sex,
         u.dept_id deptId,
         u.last_login_time lastLoginTime,

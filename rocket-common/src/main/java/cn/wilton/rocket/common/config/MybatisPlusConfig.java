@@ -1,21 +1,30 @@
 package cn.wilton.rocket.common.config;
 
+import com.baomidou.mybatisplus.core.parser.ISqlParser;
+import com.baomidou.mybatisplus.extension.parsers.BlockAttackSqlParser;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Mybatis Plus 配置类
- * @Description
- * @Author: Ranger
- * @Date: 2021/1/18 14:56
- * @Email: wilton.icp@gmail.com
+ * @author Ranger
+ * @since 2021/1/18
+ * @email: wilton.icp@gmail.com
  */
+
 public abstract class MybatisPlusConfig {
 
     @Bean
+    @Order(-2)
     public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        List<ISqlParser> sqlParserList = new ArrayList<>();
+        sqlParserList.add(new BlockAttackSqlParser());
+        paginationInterceptor.setSqlParserList(sqlParserList);
+        return paginationInterceptor;
     }
 }

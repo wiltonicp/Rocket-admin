@@ -5,10 +5,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Description
- * @Author: Ranger
- * @Date: 2021/1/27 13:43
- * @Email: wilton.icp@gmail.com
+ * Mybatis 配置类
+ * @author Ranger
+ * @since 2021/2/11
+ * @email: wilton.icp@gmail.com
  */
 @Configuration
 @MapperScan({"cn.wilton.rocket.mapper","cn.wilton.framework.security.manager.mapper"})

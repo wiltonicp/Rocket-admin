@@ -81,6 +81,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, SystemUser> impleme
         // 创建用户
         user.setCreatedTime(LocalDateTime.now());
         user.setAvatar(SystemUser.DEFAULT_AVATAR);
+        user.setStatus(SystemUser.STATUS_VALID);
         user.setPassword(passwordEncoder.encode(SystemUser.DEFAULT_PASSWORD));
         save(user);
         // 保存用户角色

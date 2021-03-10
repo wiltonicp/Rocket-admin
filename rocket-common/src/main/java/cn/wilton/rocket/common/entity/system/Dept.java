@@ -15,29 +15,29 @@ import java.time.LocalDateTime;
 
 /**
  * @author Ranger
- * @date: 2021/3/6 17:01
- * @email: wilton.icp@gmail.com
+ * @since 2021/3/10
+ * @email wilton.icp@gmail.com
  */
 @Data
-@TableName("t_role")
-@Excel("角色信息表")
-public class Role implements Serializable {
+@TableName("t_dept")
+@Excel("部门信息表")
+public class Dept implements Serializable {
 
-    private static final long serialVersionUID = -1714476694755654924L;
+    public static final Long TOP_DEPT_ID = 0L;
+    private static final long serialVersionUID = -7790334862410409053L;
+    @TableId(value = "DEPT_ID", type = IdType.AUTO)
+    private Long deptId;
 
-    @TableId(value = "ROLE_ID", type = IdType.AUTO)
-    private Long roleId;
+    @TableField(value = "PARENT_ID")
+    private Long parentId;
 
-    @TableField(value = "ROLE_NAME")
-    @NotBlank(message = "角色名称不能为空")
-    @Size(max = 10, message = "角色名称长度不能超过10个字符")
-    @ExcelField(value = "角色名称")
-    private String roleName;
+    @NotBlank(message = "部门名称不能为空")
+    @Size(max = 20, message = "部门名称长度不能超过20个字符")
+    @ExcelField(value = "部门名称")
+    private String deptName;
 
-    @TableField(value = "REMARK")
-    @Size(max = 50, message = "角色描述长度不能超过50个字符")
-    @ExcelField(value = "角色描述")
-    private String remark;
+    @TableField(value = "ORDER_NUM")
+    private Integer orderNum;
 
     @TableField(value = "CREATED_TIME")
     @ExcelField(value = "创建时间")
@@ -47,6 +47,8 @@ public class Role implements Serializable {
     @ExcelField(value = "修改时间")
     private LocalDateTime modifyTime;
 
-    private transient String menuIds;
+    private transient String createTimeFrom;
+
+    private transient String createTimeTo;
 
 }

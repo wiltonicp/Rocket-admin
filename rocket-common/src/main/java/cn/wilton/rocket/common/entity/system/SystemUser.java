@@ -53,7 +53,7 @@ public class SystemUser extends RocketEntity implements Serializable {
      * 用户名
      */
     @TableField("USERNAME")
-    @Size(min = 4, max = 10, message = "{range}")
+    @Size(min = 4, max = 10, message = "用户名长度在 4-10 之间")
     @ApiModelProperty(value = "用户名")
     private String username;
 
@@ -75,8 +75,8 @@ public class SystemUser extends RocketEntity implements Serializable {
      * 邮箱
      */
     @TableField("EMAIL")
-    @Size(max = 50, message = "{noMoreThan}")
-    @Email(message = "{email}")
+    @Size(max = 50, message = "长度不能超过50个字符")
+    @Email(message = "邮箱地址有误")
     @ApiModelProperty(value = "邮箱")
     private String email;
 
@@ -84,7 +84,7 @@ public class SystemUser extends RocketEntity implements Serializable {
      * 联系电话
      */
     @TableField("MOBILE")
-    @IsMobile(message = "{mobile}")
+    @IsMobile(message = "手机号输入有误")
     @ApiModelProperty(value = "手机号")
     private String mobile;
 
@@ -92,7 +92,7 @@ public class SystemUser extends RocketEntity implements Serializable {
      * 状态 0锁定 1有效
      */
     @TableField("STATUS")
-    @NotBlank(message = "{required}")
+    @NotBlank(message = "状态不能为空")
     @ApiModelProperty(value = "状态：0锁定 1有效")
     private String status;
 
@@ -107,7 +107,7 @@ public class SystemUser extends RocketEntity implements Serializable {
      * 性别 0男 1女 2 保密
      */
     @TableField("SSEX")
-    @NotBlank(message = "{required}")
+    @NotBlank(message = "性别不能为空")
     @ApiModelProperty(value = "性别 0男 1女 2 保密")
     private String sex;
 
@@ -122,7 +122,7 @@ public class SystemUser extends RocketEntity implements Serializable {
      * 描述
      */
     @TableField("DESCRIPTION")
-    @Size(max = 100, message = "{noMoreThan}")
+    @Size(max = 100, message = "长度不能超过100个字符")
     @ApiModelProperty(value = "描述")
     private String description;
 

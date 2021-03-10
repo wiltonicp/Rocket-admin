@@ -8,8 +8,8 @@ import java.util.List;
 
 /**
  * @author Ranger
- * @date: 2021/3/6 15:46
- * @email: wilton.icp@gmail.com
+ * @since 2021/3/10
+ * @email wilton.icp@gmail.com
  */
 public interface IUserDataPermissionService extends IService<UserDataPermission> {
 
