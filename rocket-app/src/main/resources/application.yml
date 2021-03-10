@@ -33,8 +33,6 @@ rocket:
         - /swagger-resources/**
         - /swagger/**
         - /**/v2/api-docs
-        - /component/**
-        - /admin/css/**
         - /admin/images/**
         - /**/*.js
         - /**/*.css
@@ -49,12 +47,7 @@ rocket:
         - /auth/token
         - /auth/register
         - /auth/info
-        - /auth/logout
         - /dashboard
-        - /config/**
-        - /admin/**
-        - /console/**
-
 
 mybatis-plus:
   type-aliases-package: cn.wilton.rocket.*.entity
