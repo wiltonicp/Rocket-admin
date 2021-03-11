@@ -44,7 +44,7 @@ public class UserAddInput implements Serializable {
     @ApiModelProperty(value = "描述")
     private String description;
 
-    @ApiModelProperty(value = "角色id，多个英文逗号分开")
+    @ApiModelProperty(value = "角色id")
     private String roleId;
 
     @ApiModelProperty(value = "部门id，多个英文逗号分开")

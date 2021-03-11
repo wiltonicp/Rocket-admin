@@ -1,6 +1,7 @@
 package cn.wilton.rocket.common.entity.system;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -21,10 +22,10 @@ public class UserRole implements Serializable {
     @TableId(value = "ID", type = IdType.AUTO)
     private Long id;
 
-    @TableId(value = "USER_ID")
+    @TableField(value = "USER_ID")
     private Long userId;
 
-    @TableId(value = "ROLE_ID")
+    @TableField(value = "ROLE_ID")
     private Long roleId;
 
 }

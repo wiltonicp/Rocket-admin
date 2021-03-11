@@ -149,4 +149,6 @@ public class SystemUser extends RocketEntity implements Serializable {
     @TableField(exist = false)
     private String deptIds;
 
+
+
 }
