@@ -51,37 +51,37 @@ public class DeptController {
         return RocketResult.data(allDepts);
     }
 
-//    @PostMapping
-//    @PreAuthorize("hasAuthority('dept:add')")
-//    @ApiOperation(value = "新增部门")
-//    @ControllerLogAspect
-//    public void addDept(@RequestBody @Valid Dept dept) {
-//        this.deptService.createDept(dept);
-//    }
-//
-//    @DeleteMapping("/{deptIds}")
-//    @PreAuthorize("hasAuthority('dept:delete')")
-//    @ApiOperation(value = "删除部门")
-//    @ControllerLogAspect
-//    public void deleteDepts(@NotBlank(message = "{required}") @PathVariable String deptIds) {
-//        String[] ids = deptIds.split(",");
-//        this.deptService.deleteDepts(ids);
-//    }
-//
-//    @PutMapping
-//    @PreAuthorize("hasAuthority('dept:update')")
-//    @ApiOperation(value = "修改部门")
-//    @ControllerLogAspect
-//    public void updateDept(@RequestBody  @Valid Dept dept) {
-//        this.deptService.updateDept(dept);
-//    }
-//
-//    @PostMapping("excel")
-//    @PreAuthorize("hasAuthority('dept:export')")
-//    @ApiOperation(value = "导出部门数据")
-//    @ControllerLogAspect
-//    public void export(@RequestBody  Dept dept, @RequestBody  QueryRequest request, HttpServletResponse response) {
-//        List<Dept> depts = this.deptService.findDepts(dept, request);
-//        ExcelKit.$Export(Dept.class, response).downXlsx(depts, false);
-//    }
+    @PostMapping
+    @PreAuthorize("hasAuthority('dept:add')")
+    @ApiOperation(value = "新增部门")
+    @ControllerLogAspect
+    public void addDept(@RequestBody @Valid Dept dept) {
+        this.deptService.createDept(dept);
+    }
+
+    @DeleteMapping("/{deptIds}")
+    @PreAuthorize("hasAuthority('dept:delete')")
+    @ApiOperation(value = "删除部门")
+    @ControllerLogAspect
+    public void deleteDepts(@NotBlank(message = "{required}") @PathVariable String deptIds) {
+        String[] ids = deptIds.split(",");
+        this.deptService.deleteDepts(ids);
+    }
+
+    @PutMapping
+    @PreAuthorize("hasAuthority('dept:update')")
+    @ApiOperation(value = "修改部门")
+    @ControllerLogAspect
+    public void updateDept(@RequestBody  @Valid Dept dept) {
+        this.deptService.updateDept(dept);
+    }
+
+    @PostMapping("excel")
+    @PreAuthorize("hasAuthority('dept:export')")
+    @ApiOperation(value = "导出部门数据")
+    @ControllerLogAspect
+    public void export(@RequestBody  Dept dept, @RequestBody  QueryRequest request, HttpServletResponse response) {
+        List<Dept> depts = this.deptService.findDepts(dept, request);
+        ExcelKit.$Export(Dept.class, response).downXlsx(depts, false);
+    }
 }

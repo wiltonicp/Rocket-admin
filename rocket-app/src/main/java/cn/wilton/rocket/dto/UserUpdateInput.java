@@ -28,24 +28,24 @@ public class UserUpdateInput implements Serializable {
     @ApiModelProperty(value = "用户id",required = true)
     private Long userId;
 
-    @Size(min = 4, max = 10, message = "{range}")
+    @Size(min = 4, max = 10, message = "用户名长度在 4-10 之间")
     @ApiModelProperty(value = "用户名")
     private String username;
 
-    @Size(max = 50, message = "{noMoreThan}")
-    @Email(message = "{email}")
+    @Size(max = 50, message = "长度不能超过50个字符")
+    @Email(message = "邮箱地址有误")
     @ApiModelProperty(value = "邮箱")
     private String email;
 
-    @IsMobile(message = "{mobile}")
+    @IsMobile(message = "手机号输入有误")
     @ApiModelProperty(value = "手机号")
     private String mobile;
 
-    @NotBlank(message = "{required}")
+    @NotBlank(message = "性别不能为空")
     @ApiModelProperty(value = "性别 0男 1女 2 保密")
     private String sex;
 
-    @Size(max = 100, message = "{noMoreThan}")
+    @Size(max = 100, message = "长度不能超过100个字符")
     @ApiModelProperty(value = "描述")
     private String description;
 

@@ -80,7 +80,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('user:add')")
     @ApiOperation(value = "新增用户")
     @ControllerLogAspect
-    public RocketResult addUser(@RequestBody @Valid UserAddInput input) {
+    public RocketResult addUser(@RequestBody @Valid UserAddInput input) throws RocketException{
         SystemUser user = new SystemUser();
         BeanUtil.copyProperties(input,user);
         this.userService.createUser(user);

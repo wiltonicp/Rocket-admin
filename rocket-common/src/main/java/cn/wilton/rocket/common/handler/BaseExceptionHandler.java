@@ -11,7 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -70,6 +72,23 @@ public class BaseExceptionHandler {
     }
 
     /**
+     * 校验异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public RocketResult exceptionHandler(MethodArgumentNotValidException e) {
+        BindingResult bindingResult = e.getBindingResult();
+        String errorMesssage = "";
+        for (FieldError fieldError : bindingResult.getFieldErrors()) {
+            errorMesssage += fieldError.getDefaultMessage() + "!";
+        }
+        log.error("参数异常:",e);
+        return RocketResult.failed(errorMesssage);
+    }
+
+    /**
      * 统一处理请求参数校验(实体对象传参)
      *
      * @param e BindException
@@ -114,12 +133,12 @@ public class BaseExceptionHandler {
         return RocketResult.failed(e.getMessage());
     }
 
-    @ExceptionHandler(value = Exception.class)
-    @ResponseStatus(HttpStatus.OK)
-    public RocketResult handleException(Exception e) {
-        log.error("系统内部异常，异常信息", e);
-        return RocketResult.failed("系统内部异常");
-    }
+//    @ExceptionHandler(value = Exception.class)
+//    @ResponseStatus(HttpStatus.OK)
+//    public RocketResult handleException(Exception e) {
+//        log.error("系统内部异常，异常信息", e);
+//        return RocketResult.failed("系统内部异常");
+//    }
 
     @ExceptionHandler(value = ValidateCodeException.class)
     @ResponseStatus(HttpStatus.OK)
