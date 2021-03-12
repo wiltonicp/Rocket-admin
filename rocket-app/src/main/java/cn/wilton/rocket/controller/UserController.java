@@ -75,7 +75,6 @@ public class UserController {
         return this.userService.findByName(username) == null;
     }
 
-
     @PostMapping
     @PreAuthorize("hasAuthority('user:add')")
     @ApiOperation(value = "新增用户")
@@ -91,9 +90,10 @@ public class UserController {
     @PreAuthorize("hasAuthority('user:update')")
     @ApiOperation(value = "修改用户")
     @ControllerLogAspect
-    public RocketResult updateUser(@RequestBody @Valid UserUpdateInput input) {
+    public RocketResult updateUser(@PathVariable Long userId,@RequestBody @Valid UserUpdateInput input) {
         SystemUser user = new SystemUser();
         BeanUtil.copyProperties(input,user);
+        user.setUserId(userId);
         this.userService.updateUser(user);
         return RocketResult.success();
     }

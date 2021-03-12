@@ -20,13 +20,10 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @ApiModel("修改用户入参")
 public class UserUpdateInput implements Serializable {
 
-
-    @ApiModelProperty(value = "用户id",required = true)
-    private Long userId;
 
     @Size(min = 4, max = 10, message = "用户名长度在 4-10 之间")
     @ApiModelProperty(value = "用户名")
@@ -43,17 +40,17 @@ public class UserUpdateInput implements Serializable {
 
     @NotBlank(message = "性别不能为空")
     @ApiModelProperty(value = "性别 0男 1女 2 保密")
-    private String sex;
+    private Long sex;
 
     @Size(max = 100, message = "长度不能超过100个字符")
     @ApiModelProperty(value = "描述")
     private String description;
 
     @ApiModelProperty(value = "角色id，多个英文逗号分开")
-    private String roleId;
+    private Long roleId;
 
-    @ApiModelProperty(value = "部门id，多个英文逗号分开")
-    private String deptIds;
+    @ApiModelProperty(value = "部门id")
+    private Long deptIds;
 
 
 }

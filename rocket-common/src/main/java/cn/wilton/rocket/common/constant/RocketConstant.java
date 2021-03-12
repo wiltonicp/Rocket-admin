@@ -7,6 +7,17 @@ package cn.wilton.rocket.common.constant;
  * @Email: wilton.icp@gmail.com
  */
 public class RocketConstant {
+
+    /**
+     * 默认头像
+     */
+    public static final String DEFAULT_AVATAR = "https://oss.wiltonic.cn/defult.jpeg";
+    /**
+     * 默认密码
+     */
+    public static final String DEFAULT_PASSWORD = "rocket123";
+
+
     /**
      * gif类型
      */
@@ -24,11 +35,11 @@ public class RocketConstant {
     /**
      * 排序规则：降序
      */
-    public static final String ORDER_DESC = "descending";
+    public static final String ORDER_DESC = "DESC";
     /**
      * 排序规则：升序
      */
-    public static final String ORDER_ASC = "ascending";
+    public static final String ORDER_ASC = "ASC";
 
     /**
      * 允许下载的文件类型，根据需求自己添加（小写）

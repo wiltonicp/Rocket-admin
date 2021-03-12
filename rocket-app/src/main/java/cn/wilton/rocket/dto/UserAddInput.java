@@ -19,7 +19,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @ApiModel("新增用户入参")
 public class UserAddInput implements Serializable {
 
@@ -38,17 +38,17 @@ public class UserAddInput implements Serializable {
 
     @NotBlank(message = "性别不能为空")
     @ApiModelProperty(value = "性别 0男 1女 2 保密")
-    private String sex;
+    private Long sex;
 
     @Size(max = 100, message = "长度不能超过100个字符")
     @ApiModelProperty(value = "描述")
     private String description;
 
     @ApiModelProperty(value = "角色id")
-    private String roleId;
+    private Long roleId;
 
-    @ApiModelProperty(value = "部门id，多个英文逗号分开")
-    private String deptIds;
+    @ApiModelProperty(value = "部门id")
+    private Long deptIds;
 
 
 }

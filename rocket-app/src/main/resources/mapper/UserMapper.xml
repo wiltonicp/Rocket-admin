@@ -10,7 +10,7 @@
         u.status,
         u.created_time AS createdTime,
         u.ssex sex,
-        u.dept_id deptId,
+        u.dept_id deptIds,
         u.last_login_time lastLoginTime,
         u.modify_time modifyTime,
         u.description,
@@ -27,8 +27,8 @@
         <if test="user.username != null and user.username != ''">
             AND u.username = #{user.username}
         </if>
-        <if test="user.deptId != null and user.deptId != ''">
-            AND d.dept_id = #{user.deptId}
+        <if test="user.deptIds != null and user.deptIds != ''">
+            AND d.dept_id = #{user.deptIds}
         </if>
         <if test="user.sex != null and user.sex != ''">
             AND u.ssex = #{user.sex}
@@ -62,7 +62,7 @@
         u.status,
         u.created_time createdTime,
         u.ssex sex,
-        u.dept_id deptId,
+        u.dept_id deptIds,
         u.last_login_time lastLoginTime,
         u.modify_time modifyTime,
         u.description,
@@ -79,8 +79,8 @@
         <if test="user.username != null and user.username != ''">
             AND u.username = #{user.username}
         </if>
-        <if test="user.deptId != null and user.deptId != ''">
-            AND d.dept_id = #{user.deptId}
+        <if test="user.deptIds != null and user.deptIds != ''">
+            AND d.dept_id = #{user.deptIds}
         </if>
         <if test="user.sex != null and user.sex != ''">
             AND u.ssex = #{user.sex}

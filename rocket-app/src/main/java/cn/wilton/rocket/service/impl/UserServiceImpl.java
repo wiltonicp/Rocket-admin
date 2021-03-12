@@ -1,5 +1,7 @@
 package cn.wilton.rocket.service.impl;
 
+import cn.wilton.rocket.common.entity.enums.StatusEnum;
+import cn.wilton.rocket.common.exception.BizException;
 import cn.wilton.rocket.mapper.UserMapper;
 import cn.wilton.rocket.service.IUserDataPermissionService;
 import cn.wilton.rocket.service.IUserRoleService;
@@ -54,8 +56,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, SystemUser> impleme
     @Override
     public IPage<SystemUser> findUserDetailList(SystemUser user, QueryRequest request) {
         Page<SystemUser> page = new Page<>(request.getPageNum(), request.getPageSize());
-        SortUtil.handlePageSort(request, page, "userId", RocketConstant.ORDER_ASC, false);
-        return this.baseMapper.findUserDetailPage(page, user);
+        SortUtil.handlePageSort(request, page, "userId", RocketConstant.ORDER_DESC, false);
+        IPage<SystemUser> userDetailPage = this.baseMapper.findUserDetailPage(page, user);
+        userDetailPage.getRecords().forEach(info ->{
+            info.created(info);
+        });
+        return userDetailPage;
     }
 
     @Override
@@ -78,23 +84,33 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, SystemUser> impleme
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void createUser(SystemUser user) {
+        /**
+         * 校验用户是否存在
+         */
+        if(this.findByName(user.getUsername()) != null){
+            new BizException("用户已存在");
+        }
         // 创建用户
         user.setCreatedTime(LocalDateTime.now());
-        user.setAvatar(SystemUser.DEFAULT_AVATAR);
-        user.setStatus(SystemUser.STATUS_VALID);
-        user.setPassword(passwordEncoder.encode(SystemUser.DEFAULT_PASSWORD));
+        user.setAvatar(RocketConstant.DEFAULT_AVATAR);
+        user.setStatus(StatusEnum.STATUS_VALID.getCode());
+        if(user.getDeptIds() != null){
+            user.setDeptIds(Long.valueOf(user.getDeptIds()));
+        }
+        user.setPassword(passwordEncoder.encode(RocketConstant.DEFAULT_PASSWORD));
         save(user);
         // 保存用户角色
-        String[] roles = StringUtils.splitByWholeSeparatorPreserveAllTokens(user.getRoleId(), ",");
+        Long[] roles = {user.getRoleId()};
         setUserRoles(user, roles);
         // 保存用户数据权限关联关系
-        String[] deptIds = StringUtils.splitByWholeSeparatorPreserveAllTokens(user.getDeptIds(), ",");
+        Long[] deptIds = {user.getDeptIds()};
         setUserDataPermissions(user, deptIds);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateUser(SystemUser user) {
+
         // 更新用户
         user.setPassword(null);
         user.setUsername(null);
@@ -104,11 +120,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, SystemUser> impleme
 
         String[] userIds = {String.valueOf(user.getUserId())};
         userRoleService.deleteUserRolesByUserId(userIds);
-        String[] roles = StringUtils.splitByWholeSeparatorPreserveAllTokens(user.getRoleId(), ",");
+        Long[] roles = {user.getRoleId()};
         setUserRoles(user, roles);
 
         userDataPermissionService.deleteByUserIds(userIds);
-        String[] deptIds = StringUtils.splitByWholeSeparatorPreserveAllTokens(user.getDeptIds(), ",");
+        Long[] deptIds = {user.getDeptIds()};
         setUserDataPermissions(user, deptIds);
     }
 
@@ -157,29 +173,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, SystemUser> impleme
     @Transactional(rollbackFor = Exception.class)
     public void resetPassword(String[] usernames) {
         SystemUser params = new SystemUser();
-        params.setPassword(passwordEncoder.encode(SystemUser.DEFAULT_PASSWORD));
+        params.setPassword(passwordEncoder.encode(RocketConstant.DEFAULT_PASSWORD));
 
         List<String> list = Arrays.asList(usernames);
         this.baseMapper.update(params, new LambdaQueryWrapper<SystemUser>().in(SystemUser::getUsername, list));
 
     }
 
-    private void setUserRoles(SystemUser user, String[] roles) {
+    private void setUserRoles(SystemUser user, Long[] roles) {
         List<UserRole> userRoles = new ArrayList<>();
         Arrays.stream(roles).forEach(roleId -> {
             UserRole userRole = new UserRole();
             userRole.setUserId(user.getUserId());
-            userRole.setRoleId(Long.valueOf(roleId));
+            userRole.setRoleId(roleId);
             userRoles.add(userRole);
         });
         userRoleService.saveBatch(userRoles);
     }
 
-    private void setUserDataPermissions(SystemUser user, String[] deptIds) {
+    private void setUserDataPermissions(SystemUser user, Long[] deptIds) {
         List<UserDataPermission> userDataPermissions = new ArrayList<>();
         Arrays.stream(deptIds).forEach(deptId -> {
             UserDataPermission permission = new UserDataPermission();
-            permission.setDeptId(Long.valueOf(deptId));
+            permission.setDeptId(deptId);
             permission.setUserId(user.getUserId());
             userDataPermissions.add(permission);
         });

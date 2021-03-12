@@ -2,6 +2,9 @@ package cn.wilton.rocket.common.entity.system;
 
 import cn.wilton.rocket.common.annotation.IsMobile;
 import cn.wilton.rocket.common.entity.RocketEntity;
+import cn.wilton.rocket.common.entity.enums.SexEnum;
+import cn.wilton.rocket.common.entity.enums.StatusEnum;
+import cn.wilton.rocket.common.util.EnumUtil;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -14,7 +17,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author Ranger
@@ -26,21 +28,6 @@ import java.util.Date;
 public class SystemUser extends RocketEntity implements Serializable {
 
     private static final long serialVersionUID = -4352868070794165001L;
-
-    // 用户状态：有效
-    public static final String STATUS_VALID = "1";
-    // 用户状态：锁定
-    public static final String STATUS_LOCK = "0";
-    // 默认头像
-    public static final String DEFAULT_AVATAR = "default.jpg";
-    // 默认密码
-    public static final String DEFAULT_PASSWORD = "rocket123";
-    // 性别男
-    public static final String SEX_MALE = "0";
-    // 性别女
-    public static final String SEX_FEMALE = "1";
-    // 性别保密
-    public static final String SEX_UNKNOW = "2";
 
     /**
      * 用户 ID
@@ -69,7 +56,7 @@ public class SystemUser extends RocketEntity implements Serializable {
      */
     @TableField("DEPT_ID")
     @ApiModelProperty(value = "部门 ID")
-    private Long deptId;
+    private Long deptIds;
 
     /**
      * 邮箱
@@ -94,7 +81,10 @@ public class SystemUser extends RocketEntity implements Serializable {
     @TableField("STATUS")
     @NotBlank(message = "状态不能为空")
     @ApiModelProperty(value = "状态：0锁定 1有效")
-    private String status;
+    private Long status;
+
+    @ApiModelProperty(value = "状态，用于展示")
+    private StatusEnum statusVal;
 
     /**
      * 最近访问时间
@@ -109,7 +99,10 @@ public class SystemUser extends RocketEntity implements Serializable {
     @TableField("SSEX")
     @NotBlank(message = "性别不能为空")
     @ApiModelProperty(value = "性别 0男 1女 2 保密")
-    private String sex;
+    private Long sex;
+
+    @ApiModelProperty(value = "性别,用于展示")
+    private SexEnum sexVal;
 
     /**
      * 头像
@@ -141,14 +134,16 @@ public class SystemUser extends RocketEntity implements Serializable {
      * 角色 ID
      */
     @TableField(exist = false)
-    private String roleId;
+    @ApiModelProperty(value = "角色id")
+    private Long roleId;
 
     @TableField(exist = false)
+    @ApiModelProperty(value = "角色名称")
     private String roleName;
 
-    @TableField(exist = false)
-    private String deptIds;
-
-
+    public void created(SystemUser user){
+        this.setSexVal(EnumUtil.getEnumByCode(SexEnum.class,user.getSex()));
+        this.setStatusVal(EnumUtil.getEnumByCode(StatusEnum.class,user.getStatus()));
+    }
 
 }

@@ -1,6 +1,7 @@
 package cn.wilton.framework.security.service;
 
 import cn.wilton.framework.security.manager.service.UserManager;
+import cn.wilton.rocket.common.entity.enums.StatusEnum;
 import cn.wilton.rocket.common.entity.system.AdminAuthUser;
 import cn.wilton.rocket.common.entity.system.SystemUser;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class RocketUserDetailsServiceImpl implements UserDetailsService {
         if(systemUser != null){
             String permissions = manager.findUserPermission(username);
             boolean notLocked = false;
-            if (StringUtils.equals(SystemUser.STATUS_VALID, systemUser.getStatus())){
+            if (StatusEnum.STATUS_VALID.getCode().equals(systemUser.getStatus())){
                 notLocked = true;
             }
             AdminAuthUser authUser = new AdminAuthUser(systemUser.getUsername(), systemUser.getPassword(), true, true, true, notLocked,

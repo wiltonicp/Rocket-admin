@@ -51,6 +51,7 @@ rocket:
 
 mybatis-plus:
   type-aliases-package: cn.wilton.rocket.*.entity
+  type-enums-package: cn.wilton.rocket.common.entity.enums
   mapper-locations: classpath*:mapper/*.xml
   configuration:
     jdbc-type-for-null: null
