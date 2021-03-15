@@ -83,6 +83,7 @@ public class SystemUser extends RocketEntity implements Serializable {
     @ApiModelProperty(value = "状态：0锁定 1有效")
     private Long status;
 
+    @TableField(exist = false)
     @ApiModelProperty(value = "状态，用于展示")
     private StatusEnum statusVal;
 
@@ -101,6 +102,7 @@ public class SystemUser extends RocketEntity implements Serializable {
     @ApiModelProperty(value = "性别 0男 1女 2 保密")
     private Long sex;
 
+    @TableField(exist = false)
     @ApiModelProperty(value = "性别,用于展示")
     private SexEnum sexVal;
 

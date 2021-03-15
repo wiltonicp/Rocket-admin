@@ -16,13 +16,13 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Tree<T> {
 
-    private String id;
+    private Long id;
 
     private String label;
 
     private List<Tree<T>> children;
 
-    private String parentId;
+    private Long parentId;
 
     private boolean hasParent = false;
 

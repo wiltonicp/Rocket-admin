@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -36,7 +37,7 @@ public class UserAddInput implements Serializable {
     @ApiModelProperty(value = "手机号",required = true)
     private String mobile;
 
-    @NotBlank(message = "性别不能为空")
+    @NotNull(message = "性别不能为空")
     @ApiModelProperty(value = "性别 0男 1女 2 保密")
     private Long sex;
 

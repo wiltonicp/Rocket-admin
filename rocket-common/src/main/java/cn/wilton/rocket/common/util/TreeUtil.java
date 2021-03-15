@@ -12,7 +12,7 @@ import java.util.List;
 * @Email: wilton.icp@gmail.com
 */
 public abstract class TreeUtil {
-    private final static String TOP_NODE_ID = "0";
+    private final static Long TOP_NODE_ID = 0L;
 
     /**
      * 用于构建菜单或部门树
@@ -26,13 +26,13 @@ public abstract class TreeUtil {
         }
         List<Tree<T>> topNodes = new ArrayList<>();
         nodes.forEach(node -> {
-            String pid = node.getParentId();
+            Long pid = node.getParentId();
             if (pid == null || TOP_NODE_ID.equals(pid)) {
                 topNodes.add(node);
                 return;
             }
             for (Tree<T> n : nodes) {
-                String id = n.getId();
+                Long id = n.getId();
                 if (id != null && id.equals(pid)) {
                     if (n.getChildren() == null) {
                         n.initChildren();

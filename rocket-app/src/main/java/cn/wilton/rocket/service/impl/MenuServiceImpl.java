@@ -103,8 +103,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     private void buildTrees(List<MenuTree> trees, List<Menu> menus) {
         menus.forEach(menu -> {
             MenuTree tree = new MenuTree();
-            tree.setId(menu.getMenuId().toString());
-            tree.setParentId(menu.getParentId().toString());
+            tree.setId(menu.getMenuId());
+            tree.setParentId(menu.getParentId());
             tree.setLabel(menu.getMenuName());
             tree.setComponent(menu.getComponent());
             tree.setIcon(menu.getIcon());

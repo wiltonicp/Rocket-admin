@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 启动器
- * @Author: Ranger
- * @Email: wilton.icp@gmail.com
+ * @author Ranger
+ * @since 2021/2/15
+ * @email wilton.icp@gmail.com
  */
-@Slf4j
 @EnableRocketLettuceRedis
 @SpringBootApplication(scanBasePackages = {"cn.wilton.rocket","cn.wilton.framework.security"})
 public class RocketAdminApplication {

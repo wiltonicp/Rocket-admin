@@ -123,8 +123,8 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
     private void buildTrees(List<DeptTree> trees, List<Dept> depts) {
         depts.forEach(dept -> {
             DeptTree tree = new DeptTree();
-            tree.setId(dept.getDeptId().toString());
-            tree.setParentId(dept.getParentId().toString());
+            tree.setId(dept.getDeptId());
+            tree.setParentId(dept.getParentId());
             tree.setLabel(dept.getDeptName());
             tree.setOrderNum(dept.getOrderNum());
             trees.add(tree);
