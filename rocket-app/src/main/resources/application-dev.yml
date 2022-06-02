@@ -8,10 +8,10 @@ spring:
       primary: base
       datasource:
         base:
-          url: jdbc:mysql://rm-uf6rb2523f415bc6dno.mysql.rds.aliyuncs.com:3306/rocket_base?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+          url: jdbc:mysql://127.0.0.1:3306/rocket_base?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
           driver-class-name: com.mysql.cj.jdbc.Driver
-          username: wilton
-          password: Wilton2019
+          username: root
+          password: 123456
   redis:
     database: 0
     host: 127.0.0.1
